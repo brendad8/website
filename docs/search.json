@@ -7,27 +7,6 @@
     "text": "California Polytechnic State University, San Luis Obispo\nM.S. Statistics, Minor in Data Science"
   },
   {
-    "objectID": "thesis.html",
-    "href": "thesis.html",
-    "title": "Thesis",
-    "section": "",
-    "text": "For my thesis, I contributed two new methods to the tidyclust package in R. The tidyclust package exists as a part of the tidyverse collection of packages to unify implementations for unsupervised learning methods under a common interface that is user-friendly and follows design principles from the tidyverse. The two methods I added were density-based clustering using the DBSCAN algorithm and model-based clustering using Gaussian mixture models. For this work, I had to research each respective method and write code to bring each method into tidyclust, justifying my design choices along the way, which you can read more about in my paper or see in my presentation!\nThesis Paper - Density-Based and Model-Based Clustering with tidyclust in R\nThesis Code - tidyclust Package\nThesis Presentation"
-  },
-  {
-    "objectID": "projects.html#project-2",
-    "href": "projects.html#project-2",
-    "title": "Porfolio",
-    "section": "Project 2",
-    "text": "Project 2"
-  },
-  {
-    "objectID": "projects.html#project-3",
-    "href": "projects.html#project-3",
-    "title": "Porfolio",
-    "section": "Project 3",
-    "text": "Project 3"
-  },
-  {
     "objectID": "resume.html",
     "href": "resume.html",
     "title": "Resume",
@@ -68,5 +47,26 @@
     "title": "Resume",
     "section": "Certifications and Awards",
     "text": "Certifications and Awards\n\nAcademic Excellence in Statistics\nAwarded for Highest GPA in Statistics Major\nJune 2025\n\n\nNational Statistics Honarary Society Member\nMu Sigma Rho\nJune 2024\n\n\nSAS Certified Specialist: Base Programming Specialist Using SAS 9.4\nSAS Certification\nMarch 2022"
+  },
+  {
+    "objectID": "thesis.html",
+    "href": "thesis.html",
+    "title": "Thesis",
+    "section": "",
+    "text": "For my thesis, I contributed two new methods to the tidyclust package in R. The tidyclust package exists as a part of the tidyverse collection of packages to unify implementations for unsupervised learning methods under a common interface that is user-friendly and follows design principles from the tidyverse. The two methods I added were density-based clustering using the DBSCAN algorithm and model-based clustering using Gaussian mixture models. For this work, I had to research each respective method and write code to bring each method into tidyclust, justifying my design choices along the way, which you can read more about in my paper or see in my presentation!\nThesis Paper - Density-Based and Model-Based Clustering with tidyclust in R\nThesis Code - tidyclust Package\nThesis Presentation"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Porfolio",
+    "section": "",
+    "text": "WORK IN PROGRESS"
+  },
+  {
+    "objectID": "projects.html#thesis",
+    "href": "projects.html#thesis",
+    "title": "Porfolio",
+    "section": "Thesis",
+    "text": "Thesis"
   }
 ]

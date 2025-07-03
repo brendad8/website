@@ -2,10 +2,7 @@
 title: "Porfolio"
 ---
 
+**WORK IN PROGRESS**
+
 ## [Thesis](thesis.qmd)
 
-
-
-## Project 2
-
-## Project 3
