@@ -1,0 +1,10 @@
+---
+title: "Survival Analysis"
+---
+
+
+For this project we will be perform **survival analysis** techniques on data from a balance test that was conducted by the US Center for Disease Control (CDC). More specifically, the test was conducted by the CDC from 2001 to 2002 and contains the results for 2238 participants as part of the National Health and Nutrition Examination Survey (NHANES). This analysis includes the use and interpretation of **parametric** survival methods, **non-parametric** survival methods, and **cox-regression**. This work was done in collaboration with Martin Hsu, Lucas Fonda, and Jason Blake.
+
+This project was done using `R`.
+
+[Final Report](documents/surv_report.pdf)

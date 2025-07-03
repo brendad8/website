@@ -20,6 +20,6 @@ title: "Porfolio"
 
 \   \   [Linear Regression](lreg.qmd)
 
-\   \   Survival Analysis
+\   \   [Survival Analysis](surv.qmd)
 
 \   \   Multi-level and Mixed Modeling

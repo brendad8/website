@@ -4,7 +4,7 @@
     "href": "lreg.html",
     "title": "Linear Regression",
     "section": "",
-    "text": "For this project, we used linear regression to model housing prices in San Luis Obsipo, California. We collected created a dataset to analyze by randomly selecting data from Zillow ourselves, choosing from data from properties sold in San Luis Obispo (SLO), California in a 90-day time span from February 2022 through April 2022. We collected variables such as sold price, square footage, number of beds, baths, and parking spaces, the year the house was built, lot size, home type, and whether or not they had a pool, cooling, or heating on each property in our data set.\nThis project includes exploratory data analysis, transformations, and model building techniques to find a model which best fits the data. Additionally, we performed statistical inference and model validation to answer key research questions and assess the overall model fit. This work was done in collaboration with Martin Hsu and Rachel Roggenkemper.\nThis work was done using R.\nFinal Report"
+    "text": "For this project, we used linear regression to model housing prices in San Luis Obsipo, California (SLO). We collected created a dataset to analyze by randomly selecting data from Zillow ourselves, choosing from data from properties sold in SLO in a 90-day time span from February 2022 through April 2022. We collected variables such as sold price, square footage, number of beds, baths, and parking spaces, the year the house was built, lot size, home type, and whether or not they had a pool, cooling, or heating on each property in our data set.\nThis project includes exploratory data analysis, transformations, and model building techniques to find a model which best fits the data. Additionally, we performed statistical inference and model validation to answer key research questions and assess the overall model fit. This work was done in collaboration with Martin Hsu and Rachel Roggenkemper.\nThis work was done using R.\nFinal Report"
   },
   {
     "objectID": "index.html",
@@ -74,7 +74,7 @@
     "href": "step_count.html",
     "title": "Step Counting Project",
     "section": "",
-    "text": "For this project, we used activity data collected, and labeled by the CalPoly Kinesiology Department to develop a new step counting algorithm. We began by evaluating an existing algorithm developed by the UK Biobank and developed a modified algorithm by leveraging the labeled categories in our dataset that were not included in the UK Biobank data.\nThis project was done as part of the Data Science Capstone for Cal Poly SLO and was completed under the guidance of Dr. Hunter Glanz, Dr. Jonathan Ventura, and Dr. Sarah Keadle and in collaboration with Martin Hsu, Kirina Sirohi, Jadyn Ellis, and Paige Dolan.\nThis project was done using both python and R.\nFinal Report\nPresentation"
+    "text": "For this project, we used activity data collected, and labeled by the CalPoly Kinesiology Department to develop a new step counting algorithm. We began by evaluating an existing algorithm developed by the UK Biobank and developed a modified algorithm by leveraging the labeled categories in our dataset that were not included in the UK Biobank data.\nThis project was done as part of the Data Science Capstone for Cal Poly SLO and was completed under the guidance of Dr. Hunter Glanz, Dr. Jonathan Ventura, and Dr. Sarah Keadle and in collaboration with Martin Hsu, Kirina Sirohi, Jadyn Ellis, and Paige Dolan.\nThis project was done using python.\nFinal Report\nPresentation"
   },
   {
     "objectID": "doe.html",
@@ -110,5 +110,12 @@
     "title": "European Football Leagues Project",
     "section": "",
     "text": "For this project, I work with 2021-2022 season data for the top 5 European football leagues. The data was acquired from FBref and spans Passing, Shooting, Defense, Shot Creating Actions, and Possession statistics.\nThe goal of this project was to model professional footballers playstyles using their recorded, on-field actions, rather than just their positions. This project would aid with team building by being able to find replacement players who can fill the same role as the player they replace. Additionally, It can identify undervalued players who play valuable roles for their team.\nFor this project I used python.\nGithub Repository\nPresentation"
+  },
+  {
+    "objectID": "surv.html",
+    "href": "surv.html",
+    "title": "Survival Analysis",
+    "section": "",
+    "text": "For this project we will be perform survival analysis techniques on data from a balance test that was conducted by the US Center for Disease Control (CDC). More specifically, the test was conducted by the CDC from 2001 to 2002 and contains the results for 2238 participants as part of the National Health and Nutrition Examination Survey (NHANES). This analysis includes the use and interpretation of parametric survival methods, non-parametric survival methods, and cox-regression. This work was done in collaboration with Martin Hsu, Lucas Fonda, and Jason Blake.\nThis project was done using R.\nFinal Report"
   }
 ]

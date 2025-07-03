@@ -6,7 +6,7 @@ For this project, we used activity data collected, and labeled by the CalPoly Ki
 
 This project was done as part of the Data Science Capstone for Cal Poly SLO and was completed under the guidance of Dr. Hunter Glanz, Dr. Jonathan Ventura, and Dr. Sarah Keadle and in collaboration with Martin Hsu, Kirina Sirohi, Jadyn Ellis, and Paige Dolan.
 
-This project was done using both `python` and `R`.
+This project was done using `python`.
 
 [Final Report](documents/step_count_report.pdf)
 
