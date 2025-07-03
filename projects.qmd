@@ -1,8 +1,10 @@
 ---
-title: "Projects"
+title: "Porfolio"
 ---
 
-## Project 1
+## [Thesis](thesis.qmd)
+
+
 
 ## Project 2
 

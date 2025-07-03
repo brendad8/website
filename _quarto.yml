@@ -3,13 +3,13 @@ project:
   output-dir: docs
   
 website:
-  title: "Brendan Callender"
+  title: "Contents"
   navbar:
-    search: false
     left:
       - href: index.qmd
         text: Home
-      - projects.qmd
+      - href: projects.qmd
+        text: Portfolio
     tools:
       - icon: linkedin
         href: https://www.linkedin.com/in/brendan-callender-4569a7218/

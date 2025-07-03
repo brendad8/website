@@ -1,0 +1,12 @@
+---
+title: "Thesis"
+---
+
+For my thesis, I contributed two new methods to the `tidyclust` package in `R`. The `tidyclust` package exists as a part of the `tidyverse` collection of packages to unify implementations for unsupervised learning methods under a common interface that is user-friendly and follows design principles from the `tidyverse`. The two methods I added were density-based clustering using the DBSCAN algorithm and model-based clustering using Gaussian mixture models. For this work, I had to research each respective method and write code to bring each method into `tidyclust`, justifying my design choices along the way, which you can read more about in my paper or see in my presentation!
+
+
+[Thesis Paper - Density-Based and Model-Based Clustering with tidyclust in R](https://digitalcommons.calpoly.edu/theses/3023/)
+
+[Thesis Code - tidyclust Package](https://github.com/brendad8/tidyclust)
+
+[Thesis Presentation](https://github.com/brendad8/thesis/blob/main/thesis_presentation.pdf)

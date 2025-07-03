@@ -10,11 +10,12 @@ about:
 :::{#me}
 
 
-## Education
+:::{.text-center}
 
 **California Polytechnic State University, San Luis Obispo**
 
 M.S. Statistics, Minor in Data Science
 
+:::
 
 :::
