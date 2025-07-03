@@ -1,0 +1,19 @@
+---
+title: "Classifying Risky Mortgage Applicants"
+---
+
+For this project, we were asked to pose as data scientists working in the mortages division of a bank. We were tasked with building a predictive model to determine whether a morgage applicant will be able to repay their loan. The data for the project can be found in the Kaggle competition [here](https://www.kaggle.com/c/home-credit-default-risk/). This work was completed in collaboration with Martin Hsu, Joshua Blank, Alex Arrieta, and Sophia Chung.
+
+For this project we tested models using **logistic regression**, **support vector machines** (SVM), and **linear discriminant analysis** (LDA). In this project we were asked to implement **cross validation** and model metrics by hand. For this task, we considered **ROC-AUC**, **Accuracy**, **F1-Score**, and more. In the data we encounter a major class imbalance with approximately only 10% of creditors being unable to repay their loans. To account for this, we used **oversampling** when training our models to facilitate more balanced predictions. In this project, we were also tasked with considering **fairness** and selecting a model that does not discriminate according to age, gender, race, and marital status which is illegal under the Fair Housing and Equal Credit Opportunity Acts. For more details about the project description and instructions, see the description file below.
+
+This project was done using `python`.
+
+[Project Description](documents/loans_proj_det.pdf)
+
+[Code](documents/loans_code.ipynb)
+
+[Project Proposal](documents/loans_prop.pdf)
+
+[Final Report](documents/loans_report.pdf)
+
+[Final Presentation](documents/loans_pres.pdf)

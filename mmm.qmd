@@ -1,0 +1,14 @@
+---
+title: "Multi-level and Mixed Modeling"
+---
+
+In this project, using a **linear mixed-effects model** to answer what factors are most associated with higher or lower point totals in the English Premier League (EPL). We also examine whether spending more money on players is associated with achieving higher point totals. This work was done in collaboration with Dylan Li and Liam Quach.
+
+
+This project was done using `R`.
+
+[Code](https://github.com/brendad8/Mixed-Modeling-Premier-League)
+
+[Final Report](documents/mmm_report.pdf)
+
+[Final Presentation](documents/mmm_pres.pdf)

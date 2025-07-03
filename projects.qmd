@@ -12,6 +12,8 @@ title: "Porfolio"
   
 \   \   [Step Counting Project](step_count.qmd)
 
+\   \   [Classifying Risky Mortgage Applicants](loans.qmd)
+
 \   \   [Detecting Heart Disease and Diabetes Project](hd_diab.qmd)
 
 ## Statistics Projects
@@ -22,4 +24,4 @@ title: "Porfolio"
 
 \   \   [Survival Analysis](surv.qmd)
 
-\   \   Multi-level and Mixed Modeling
+\   \   [Multi-level and Mixed Modeling](mmm.qmd)

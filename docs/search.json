@@ -7,18 +7,186 @@
     "text": "For this project, we used linear regression to model housing prices in San Luis Obsipo, California (SLO). We collected created a dataset to analyze by randomly selecting data from Zillow ourselves, choosing from data from properties sold in SLO in a 90-day time span from February 2022 through April 2022. We collected variables such as sold price, square footage, number of beds, baths, and parking spaces, the year the house was built, lot size, home type, and whether or not they had a pool, cooling, or heating on each property in our data set.\nThis project includes exploratory data analysis, transformations, and model building techniques to find a model which best fits the data. Additionally, we performed statistical inference and model validation to answer key research questions and assess the overall model fit. This work was done in collaboration with Martin Hsu and Rachel Roggenkemper.\nThis work was done using R.\nFinal Report"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Brendan Callender",
+    "objectID": "documents/loans_code.html",
+    "href": "documents/loans_code.html",
+    "title": "Data Preparation",
     "section": "",
-    "text": "California Polytechnic State University, San Luis Obispo\nM.S. Statistics, Minor in Data Science"
+    "text": "import pandas as pd\nimport numpy as np\nimport random\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.svm import SVC\nfrom sklearn.discriminant_analysis import LinearDiscriminantAnalysis\nfrom sklearn.compose import make_column_transformer\nfrom sklearn.preprocessing import OrdinalEncoder, StandardScaler, OneHotEncoder\nfrom sklearn.model_selection import train_test_split\nimport matplotlib.pyplot as plt\nIn the data preparation portion of this notebook, we subset the base training data and merge it with additional varaibles from the other given datasets. The goal is to use the additional datasets to create more variables to better determine if an applicant will struggle to pay back a loan."
   },
   {
-    "objectID": "hd_diab.html",
-    "href": "hd_diab.html",
-    "title": "Detecting Heart Disease and Diabetes Project",
+    "objectID": "documents/loans_code.html#base-dataset",
+    "href": "documents/loans_code.html#base-dataset",
+    "title": "Data Preparation",
+    "section": "Base Dataset",
+    "text": "Base Dataset\n\nloans = pd.read_csv('https://www.dropbox.com/scl/fi/1ndeticw7z4n4vkwm21zc/application_train.csv?rlkey=fvx6hdqhg0fc1978szgz9x6e3&dl=1')\n\n\nloans.head()\n\n\n\n\n\n\n\n\nSK_ID_CURR\nTARGET\nNAME_CONTRACT_TYPE\nCODE_GENDER\nFLAG_OWN_CAR\nFLAG_OWN_REALTY\nCNT_CHILDREN\nAMT_INCOME_TOTAL\nAMT_CREDIT\nAMT_ANNUITY\n...\nFLAG_DOCUMENT_18\nFLAG_DOCUMENT_19\nFLAG_DOCUMENT_20\nFLAG_DOCUMENT_21\nAMT_REQ_CREDIT_BUREAU_HOUR\nAMT_REQ_CREDIT_BUREAU_DAY\nAMT_REQ_CREDIT_BUREAU_WEEK\nAMT_REQ_CREDIT_BUREAU_MON\nAMT_REQ_CREDIT_BUREAU_QRT\nAMT_REQ_CREDIT_BUREAU_YEAR\n\n\n\n\n0\n100002\n1\nCash loans\nM\nN\nY\n0\n202500.0\n406597.5\n24700.5\n...\n0\n0\n0\n0\n0.0\n0.0\n0.0\n0.0\n0.0\n1.0\n\n\n1\n100003\n0\nCash loans\nF\nN\nN\n0\n270000.0\n1293502.5\n35698.5\n...\n0\n0\n0\n0\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n\n\n2\n100004\n0\nRevolving loans\nM\nY\nY\n0\n67500.0\n135000.0\n6750.0\n...\n0\n0\n0\n0\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n\n\n3\n100006\n0\nCash loans\nF\nN\nY\n0\n135000.0\n312682.5\n29686.5\n...\n0\n0\n0\n0\nNaN\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n4\n100007\n0\nCash loans\nM\nN\nY\n0\n121500.0\n513000.0\n21865.5\n...\n0\n0\n0\n0\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n\n\n\n\n5 rows × 122 columns\n\n\n\nHere is the subset of variables we plan on trying to use from the base training data. The variables contain info about many different aspects of an applicant.\n\nusecols = ['SK_ID_CURR', # ID\n           'NAME_EDUCATION_TYPE', # Education\n           'CNT_FAM_MEMBERS', 'DEF_30_CNT_SOCIAL_CIRCLE', # Family/Friends\n           'REGION_RATING_CLIENT_W_CITY', # Location\n           'FLAG_OWN_CAR', 'FLAG_OWN_REALTY', # Assets/Home\n           'AMT_INCOME_TOTAL', 'NAME_INCOME_TYPE', # Income/Job\n           'AMT_CREDIT', # Loan Info\n           'CODE_GENDER','DAYS_BIRTH', # Fairness \n           'TARGET' # Response Variable\n          ]\ntrain = loans[usecols].dropna().reset_index(drop=True)\n\n\nBase Data Cleaning\n\ndef map_assets(res):\n    if res == 'Y':\n        return 1\n    else:\n        return 0\n\n\ntrain['FLAG_OWN_CAR'] = train['FLAG_OWN_CAR'].apply(map_assets)\ntrain['FLAG_OWN_REALTY'] = train['FLAG_OWN_REALTY'].apply(map_assets)\n\n\ntrain.loc[:,'REGION_RATING_CLIENT_W_CITY'] = train['REGION_RATING_CLIENT_W_CITY'].astype(str)"
+  },
+  {
+    "objectID": "documents/loans_code.html#previous-applications-dataset",
+    "href": "documents/loans_code.html#previous-applications-dataset",
+    "title": "Data Preparation",
+    "section": "Previous Applications Dataset",
+    "text": "Previous Applications Dataset\n\nprev_app = pd.read_csv('https://www.dropbox.com/scl/fi/la1qm68g32lil68hhqpuo/previous_application.csv?rlkey=s0qwfw8zbflsts0qlhx2va8lc&dl=1')\n\nHere we are summarizing an applicants previous applications to gain more info about an applicants history. Some of the variables we are finding include how many prev applications has an applicant had, what was the average credit on those apps, how many were approved, canceled, refused, and unused.\n\ndf_prev_app_res = pd.concat([prev_app['SK_ID_CURR'], pd.get_dummies(prev_app['NAME_CONTRACT_STATUS'].str.upper(), dtype=int)], axis=1).groupby('SK_ID_CURR').sum()\ndf_prev_app_res['TOTAL_APPS'] = df_prev_app_res.sum(axis=1)\ndf_prev_app_res.reset_index(inplace=True)\ndf_temp = prev_app.groupby('SK_ID_CURR')['AMT_CREDIT'].mean().reset_index().rename(columns={'AMT_CREDIT':'AVG_PREV_AMT_CREDIT'})\nprev_app_sum = df_prev_app_res.merge(df_temp, on='SK_ID_CURR')\n\n\nprev_app_sum.head()\n\n\n\n\n\n\n\n\nSK_ID_CURR\nAPPROVED\nCANCELED\nREFUSED\nUNUSED OFFER\nTOTAL_APPS\nAVG_PREV_AMT_CREDIT\n\n\n\n\n0\n100001\n1\n0\n0\n0\n1\n23787.0\n\n\n1\n100006\n1\n0\n0\n0\n1\n675000.0\n\n\n2\n100007\n2\n0\n0\n0\n2\n232200.0\n\n\n3\n100009\n1\n0\n0\n0\n1\n98239.5\n\n\n4\n100011\n0\n0\n1\n0\n1\n0.0"
+  },
+  {
+    "objectID": "documents/loans_code.html#installments-payments-dataset",
+    "href": "documents/loans_code.html#installments-payments-dataset",
+    "title": "Data Preparation",
+    "section": "Installments Payments Dataset",
+    "text": "Installments Payments Dataset\n\ninst_pay = pd.read_csv('https://www.dropbox.com/scl/fi/24dt10upopn3zbg0m7otk/installments_payments.csv?rlkey=l9u1qhoy904tglaq8nng99adr&dl=1')\n\nHere we are trying to gain insight into an applicants ability to pay different installments of previous credit. Some of the variables we calculate are how many late, ontime, no payment, insufficient, and full payments an applicant has.\n\ninst_pay['N_LATE_PAY'] = (inst_pay['DAYS_ENTRY_PAYMENT'] &gt; inst_pay['DAYS_INSTALMENT']).astype(int)\ninst_pay['N_ONTIME_PAY'] = (inst_pay['DAYS_ENTRY_PAYMENT'] &lt;= inst_pay['DAYS_INSTALMENT']).astype(int)\ninst_pay['N_NO_PAYMENT'] = (inst_pay['AMT_PAYMENT'] == 0).astype(int)\ninst_pay['N_PAYMENTS'] = pd.Series([1]*inst_pay.shape[0])\ninst_pay['N_INSUF_PAYMENT'] = ((inst_pay['AMT_PAYMENT'] &lt; (3/4)*inst_pay['AMT_INSTALMENT'])).astype(int)\ninst_pay['N_FULL_PAYMENT'] = ((inst_pay['AMT_PAYMENT'] &gt;= inst_pay['AMT_INSTALMENT'])).astype(int)\ninst_pay_vars = inst_pay.groupby(['SK_ID_CURR'])[['N_LATE_PAY', 'N_ONTIME_PAY', 'N_NO_PAYMENT', 'N_PAYMENTS', 'N_INSUF_PAYMENT', 'N_FULL_PAYMENT']].sum().reset_index()\n\n\ninst_pay_vars.head()\n\n\n\n\n\n\n\n\nSK_ID_CURR\nN_LATE_PAY\nN_ONTIME_PAY\nN_NO_PAYMENT\nN_PAYMENTS\nN_INSUF_PAYMENT\nN_FULL_PAYMENT\n\n\n\n\n0\n100001\n1\n6\n0\n7\n0\n7\n\n\n1\n100002\n0\n19\n0\n19\n0\n19\n\n\n2\n100003\n0\n25\n0\n25\n0\n25\n\n\n3\n100004\n0\n3\n0\n3\n0\n3\n\n\n4\n100005\n1\n8\n0\n9\n0\n9"
+  },
+  {
+    "objectID": "documents/loans_code.html#credit-card-balance-dataset",
+    "href": "documents/loans_code.html#credit-card-balance-dataset",
+    "title": "Data Preparation",
+    "section": "Credit Card Balance Dataset",
+    "text": "Credit Card Balance Dataset\n\ncred_card = pd.read_csv('https://www.dropbox.com/scl/fi/360n45paoyg7jmcvtn0zd/credit_card_balance.csv?rlkey=gpekmyu1sy9na303yifydmn9b&dl=1')\n\nHere we are doing the same as the installments payments dataset but for credit card loan payments. We calculate the number of days past due patments, ontime payments and total payments an applicant has\n\ncred_card['N_DPD_CC'] = (cred_card['SK_DPD_DEF'] &gt; 0).astype(int)\ncred_card['N_ONTIME_CC'] = (cred_card['SK_DPD_DEF'] == 0).astype(int)\ncred_card['N_PAYMENTS_CC'] = pd.Series([1]*cred_card.shape[0])\ncred_card_vars = pd.DataFrame(cred_card.groupby('SK_ID_CURR')[['N_DPD_CC', 'N_ONTIME_CC', 'N_PAYMENTS_CC']].sum()).reset_index()\n\n\ncred_card_vars.head()\n\n\n\n\n\n\n\n\nSK_ID_CURR\nN_DPD_CC\nN_ONTIME_CC\nN_PAYMENTS_CC\n\n\n\n\n0\n100006\n0\n6\n6\n\n\n1\n100011\n0\n74\n74\n\n\n2\n100013\n1\n95\n96\n\n\n3\n100021\n0\n17\n17\n\n\n4\n100023\n0\n8\n8"
+  },
+  {
+    "objectID": "documents/loans_code.html#pos-cash-balance",
+    "href": "documents/loans_code.html#pos-cash-balance",
+    "title": "Data Preparation",
+    "section": "POS CASH Balance",
+    "text": "POS CASH Balance\n\npos_cash = pd.read_csv('https://www.dropbox.com/scl/fi/ya687sh4v0s2jkavtwle1/POS_CASH_balance.csv?rlkey=3oypt1u95yj908y7kja3ourkm&dl=1')\n\n\npos_cash['N_COMPLETED_CONTRACTS'] = (pos_cash[pos_cash['CNT_INSTALMENT'] &gt;= 12]['NAME_CONTRACT_STATUS'] == 'Completed').astype(int)\npos_cash_vars = pos_cash.groupby('SK_ID_CURR')['N_COMPLETED_CONTRACTS'].sum().reset_index()\n\n\npos_cash_vars.head()\n\n\n\n\n\n\n\n\nSK_ID_CURR\nN_COMPLETED_CONTRACTS\n\n\n\n\n0\n100001\n0.0\n\n\n1\n100002\n0.0\n\n\n2\n100003\n0.0\n\n\n3\n100004\n0.0\n\n\n4\n100005\n0.0"
+  },
+  {
+    "objectID": "documents/loans_code.html#bureau-dataset",
+    "href": "documents/loans_code.html#bureau-dataset",
+    "title": "Data Preparation",
+    "section": "Bureau Dataset",
+    "text": "Bureau Dataset\n\nbureau = pd.read_csv('https://www.dropbox.com/scl/fi/b5y4piwjimd2qlsthvkud/bureau.csv?rlkey=yr1an067kgnz1q7k8dll46f9q&dl=1')\n\n\ndef map_credit_type(s):\n    if s.lower() in ('real estate loan', 'mortgage'):\n        return 'M'\n    else:\n        return 'O'\n\n\nbureau_2 = bureau.loc[:, ['SK_ID_CURR', 'CREDIT_DAY_OVERDUE', 'AMT_CREDIT_SUM_OVERDUE', 'CREDIT_TYPE', 'CREDIT_ACTIVE']].copy()\nbureau_2['CREDIT_TYPE_GEN'] = bureau_2['CREDIT_TYPE'].astype(str).apply(map_credit_type)\nbureau_2 = bureau_2[bureau_2['CREDIT_ACTIVE'] == \"Active\"].drop(['CREDIT_TYPE', 'CREDIT_ACTIVE'], axis=1).groupby(['SK_ID_CURR', 'CREDIT_TYPE_GEN']).sum().unstack().fillna(0)\nbureau_2.columns = ['CREDIT_DAY_OVERDUE_MORTGAGE', 'CREDIT_DAY_OVERDUE_OTHER', 'AMT_CREDIT_SUM_OVERDUE_MORTGAGE', 'AMT_CREDIT_SUM_OVERDUE_OTHER']\nbureau_2.reset_index(inplace=True)\n\n\nbureau_2.head()\n\n\n\n\n\n\n\n\nSK_ID_CURR\nCREDIT_DAY_OVERDUE_MORTGAGE\nCREDIT_DAY_OVERDUE_OTHER\nAMT_CREDIT_SUM_OVERDUE_MORTGAGE\nAMT_CREDIT_SUM_OVERDUE_OTHER\n\n\n\n\n0\n100001\n0.0\n0.0\n0.0\n0.0\n\n\n1\n100016\n0.0\n0.0\n0.0\n0.0\n\n\n2\n100019\n0.0\n0.0\n0.0\n0.0\n\n\n3\n100020\n0.0\n0.0\n0.0\n0.0\n\n\n4\n100026\n0.0\n0.0\n0.0\n0.0"
+  },
+  {
+    "objectID": "documents/loans_code.html#join-datasets",
+    "href": "documents/loans_code.html#join-datasets",
+    "title": "Data Preparation",
+    "section": "Join Datasets",
+    "text": "Join Datasets\nWhen joining the datasets, we made sure to use a left join so we do not lose observations that did not have data in the extra datasets. Therefore, if an applicant is not in these extra data tables, we will not be able to incorporate the additional information when predicting whether they will have difficulty paying back a loan.\n\ntrain_full = train.merge(prev_app_sum, on='SK_ID_CURR', how='left').merge(inst_pay_vars, on='SK_ID_CURR', how='left').merge(cred_card_vars, on='SK_ID_CURR', how='left').merge(pos_cash_vars, on='SK_ID_CURR', how='left').merge(bureau_2, on='SK_ID_CURR', how='left')\n\n\ntrain_full = train_full.fillna(0)\n\n\ntrain_full.shape\n\n(306488, 33)\n\n\n\ntrain_full.head()\n\n\n\n\n\n\n\n\nSK_ID_CURR\nNAME_EDUCATION_TYPE\nCNT_FAM_MEMBERS\nDEF_30_CNT_SOCIAL_CIRCLE\nREGION_RATING_CLIENT_W_CITY\nFLAG_OWN_CAR\nFLAG_OWN_REALTY\nAMT_INCOME_TOTAL\nNAME_INCOME_TYPE\nAMT_CREDIT\n...\nN_INSUF_PAYMENT\nN_FULL_PAYMENT\nN_DPD_CC\nN_ONTIME_CC\nN_PAYMENTS_CC\nN_COMPLETED_CONTRACTS\nCREDIT_DAY_OVERDUE_MORTGAGE\nCREDIT_DAY_OVERDUE_OTHER\nAMT_CREDIT_SUM_OVERDUE_MORTGAGE\nAMT_CREDIT_SUM_OVERDUE_OTHER\n\n\n\n\n0\n100002\nSecondary / secondary special\n1.0\n2.0\n2\n0\n1\n202500.0\nWorking\n406597.5\n...\n0.0\n19.0\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n\n\n1\n100003\nHigher education\n2.0\n0.0\n1\n0\n0\n270000.0\nState servant\n1293502.5\n...\n0.0\n25.0\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n\n\n2\n100004\nSecondary / secondary special\n1.0\n0.0\n2\n1\n1\n67500.0\nWorking\n135000.0\n...\n0.0\n3.0\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n0.0\n\n\n3\n100006\nSecondary / secondary special\n2.0\n0.0\n2\n0\n1\n135000.0\nWorking\n312682.5\n...\n0.0\n16.0\n0.0\n6.0\n6.0\n0.0\n0.0\n0.0\n0.0\n0.0\n\n\n4\n100007\nSecondary / secondary special\n1.0\n0.0\n2\n0\n1\n121500.0\nWorking\n513000.0\n...\n3.0\n60.0\n0.0\n0.0\n0.0\n3.0\n0.0\n0.0\n0.0\n0.0\n\n\n\n\n5 rows × 33 columns"
+  },
+  {
+    "objectID": "documents/loans_code.html#logistic-regression-function",
+    "href": "documents/loans_code.html#logistic-regression-function",
+    "title": "Data Preparation",
+    "section": "Logistic Regression Function",
+    "text": "Logistic Regression Function\n\ndef gradient(betas, X, c, p, lam):\n  \n    dl_dbeta = [0] * len(betas)\n\n    for i in range(len(betas)):\n        x = X.iloc[:,i]\n        dl_dbeta[i] = ((-1)*c*(1-p)*x).sum() + ((1-c)*p*x).sum() + 2*lam*betas[i]\n    \n    return pd.Series(dl_dbeta)\n\ndef update_betas(betas, gradient, eta):\n    return betas - eta*gradient\n\ndef check_stop_cond1(gradient):\n    if max(gradient) &lt;= 0.0001:\n        return True\n    else:\n        return False\n\ndef check_stop_cond2(iter):\n    if iter == 2000:\n        return True\n    else:\n        return False\n\ndef fit_logreg(X, Y, eta, lam):\n    iter = 0\n\n    stop = False\n    betas = pd.Series([0]*X.shape[1])\n\n    while not stop:\n\n        z = (X.to_numpy() @ betas.to_numpy())\n        p = 1 / (1 + np.exp((-1)*z))\n    \n        dl_dbeta = gradient(betas, X, Y, p, lam)\n        betas = update_betas(betas, dl_dbeta, eta)\n\n        iter += 1\n\n        eta = eta*.99\n\n        stop = check_stop_cond1(dl_dbeta)\n        stop = check_stop_cond2(iter)\n\n    return betas.to_numpy()"
+  },
+  {
+    "objectID": "documents/loans_code.html#logistic-regression",
+    "href": "documents/loans_code.html#logistic-regression",
+    "title": "Data Preparation",
+    "section": "Logistic Regression",
+    "text": "Logistic Regression\n\nSub 1\n\nct1 = make_column_transformer(\n    (OrdinalEncoder(), ['FLAG_OWN_CAR', 'FLAG_OWN_REALTY']),\n    (StandardScaler(), ['AMT_INCOME_TOTAL', 'AMT_CREDIT', 'APPROVED', 'REFUSED', 'N_LATE_PAY', 'N_FULL_PAYMENT']),\n    (OneHotEncoder(), [\"NAME_EDUCATION_TYPE\", 'NAME_INCOME_TYPE', 'REGION_RATING_CLIENT_W_CITY']),\n    remainder=\"drop\"\n)\n\nX = pd.DataFrame(ct1.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('logReg', X, Y, .0002, 4, 'stratified_target', cutoff=.25)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.629039\n\n\n1\nF1\n0.388863\n\n\n2\nFalse Discovery Rate\n0.502393\n\n\n3\nFalse Negative Rate\n0.679189\n\n\n4\nPrecision\n0.497607\n\n\n5\nROC-AUC\n0.619514\n\n\n6\nRecall\n0.320811\n\n\n\n\n\n\n\n\n\nSub 2\n\nct2 = make_column_transformer(\n    (OrdinalEncoder(), ['FLAG_OWN_CAR', 'FLAG_OWN_REALTY']),\n    (StandardScaler(), ['DAYS_BIRTH', 'AMT_INCOME_TOTAL', 'AMT_CREDIT', 'APPROVED', 'REFUSED', 'N_LATE_PAY', 'N_FULL_PAYMENT', 'N_COMPLETED_CONTRACTS', 'N_ONTIME_CC', 'N_DPD_CC']),\n    (OneHotEncoder(), [\"NAME_EDUCATION_TYPE\", 'NAME_INCOME_TYPE', 'REGION_RATING_CLIENT_W_CITY', 'CODE_GENDER']),\n    remainder=\"drop\"\n)\n\nX = pd.DataFrame(ct2.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('logReg', X, Y, .0002, 4, 'stratified_target', cutoff=.5)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.631142\n\n\n1\nF1\n0.023285\n\n\n2\nFalse Discovery Rate\n0.221916\n\n\n3\nFalse Negative Rate\n0.988154\n\n\n4\nPrecision\n0.778084\n\n\n5\nROC-AUC\n0.643126\n\n\n6\nRecall\n0.011846\n\n\n\n\n\n\n\n\n\nSub 3\n\nct3 = make_column_transformer(\n    (OrdinalEncoder(), ['FLAG_OWN_CAR', 'FLAG_OWN_REALTY']),\n    (StandardScaler(), ['AMT_INCOME_TOTAL', 'AMT_CREDIT', 'REGION_RATING_CLIENT_W_CITY', 'N_LATE_PAY', 'N_COMPLETED_CONTRACTS']),\n    (OneHotEncoder(), [\"NAME_EDUCATION_TYPE\", 'NAME_INCOME_TYPE', 'REGION_RATING_CLIENT_W_CITY']),\n    remainder=\"drop\"\n)\n\nX = pd.DataFrame(ct3.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('logReg', X, Y, .0002, 4, 'stratified_target', cutoff=.5)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.631680\n\n\n1\nF1\n0.000000\n\n\n2\nFalse Discovery Rate\n1.000000\n\n\n3\nFalse Negative Rate\n1.000000\n\n\n4\nPrecision\n0.000000\n\n\n5\nROC-AUC\n0.610827\n\n\n6\nRecall\n0.000000\n\n\n\n\n\n\n\n\n\nSub 4\n\nct4 = make_column_transformer(\n    (OrdinalEncoder(), ['FLAG_OWN_CAR', 'FLAG_OWN_REALTY']),\n    (StandardScaler(), ['AMT_INCOME_TOTAL', 'AMT_CREDIT', 'N_LATE_PAY', 'N_COMPLETED_CONTRACTS', 'CREDIT_DAY_OVERDUE_MORTGAGE', 'CREDIT_DAY_OVERDUE_OTHER',\n       'AMT_CREDIT_SUM_OVERDUE_MORTGAGE', 'AMT_CREDIT_SUM_OVERDUE_OTHER']),\n    (OneHotEncoder(), [\"NAME_EDUCATION_TYPE\", 'NAME_INCOME_TYPE', 'REGION_RATING_CLIENT_W_CITY']),\n    remainder=\"drop\"\n)\n\nX = pd.DataFrame(ct4.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('logReg', X, Y, .0002, 4, 'stratified_target', cutoff=.5)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.632527\n\n\n1\nF1\n0.001735\n\n\n2\nFalse Discovery Rate\n0.250000\n\n\n3\nFalse Negative Rate\n0.999131\n\n\n4\nPrecision\n0.750000\n\n\n5\nROC-AUC\n0.610655\n\n\n6\nRecall\n0.000869\n\n\n\n\n\n\n\n\n\nSub 5\n\nct5 = make_column_transformer(\n    (OrdinalEncoder(), ['FLAG_OWN_CAR']),\n    (StandardScaler(), ['DAYS_BIRTH', 'REFUSED', 'N_ONTIME_PAY', 'N_PAYMENTS', 'DEF_30_CNT_SOCIAL_CIRCLE']),\n    (OneHotEncoder(), [\"NAME_EDUCATION_TYPE\", 'NAME_INCOME_TYPE', 'REGION_RATING_CLIENT_W_CITY']),\n    remainder=\"drop\"\n)\n\nX = pd.DataFrame(ct5.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('logReg', X, Y, .0002, 4, 'stratified_target', cutoff=.25)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.631124\n\n\n1\nF1\n0.430720\n\n\n2\nFalse Discovery Rate\n0.498095\n\n\n3\nFalse Negative Rate\n0.622407\n\n\n4\nPrecision\n0.501905\n\n\n5\nROC-AUC\n0.631738\n\n\n6\nRecall\n0.377593"
+  },
+  {
+    "objectID": "documents/loans_code.html#svc",
+    "href": "documents/loans_code.html#svc",
+    "title": "Data Preparation",
+    "section": "SVC",
+    "text": "SVC\n\nSub 1\n\nX = pd.DataFrame(ct1.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('SVM', X, Y, .0002, 4, 'stratified_target', cutoff=.25)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.627455\n\n\n1\nF1\n0.036731\n\n\n2\nFalse Discovery Rate\n0.579197\n\n\n3\nFalse Negative Rate\n0.980714\n\n\n4\nPrecision\n0.420803\n\n\n5\nROC-AUC\n0.551428\n\n\n6\nRecall\n0.019286\n\n\n\n\n\n\n\n\n\nSub 2\n\nX = pd.DataFrame(ct2.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('SVM', X, Y, .0002, 4, 'stratified_target', cutoff=.25)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.625900\n\n\n1\nF1\n0.051749\n\n\n2\nFalse Discovery Rate\n0.594659\n\n\n3\nFalse Negative Rate\n0.972262\n\n\n4\nPrecision\n0.405341\n\n\n5\nROC-AUC\n0.546531\n\n\n6\nRecall\n0.027738\n\n\n\n\n\n\n\n\n\nSub 3\n\nX = pd.DataFrame(ct3.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('SVM', X, Y, .0002, 4, 'stratified_target', cutoff=.25)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.628688\n\n\n1\nF1\n0.032583\n\n\n2\nFalse Discovery Rate\n0.538690\n\n\n3\nFalse Negative Rate\n0.983030\n\n\n4\nPrecision\n0.461310\n\n\n5\nROC-AUC\n0.544372\n\n\n6\nRecall\n0.016970\n\n\n\n\n\n\n\n\n\nSub 4\n\nX = pd.DataFrame(ct4.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('SVM', X, Y, .0002, 4, 'stratified_target', cutoff=.25)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.629788\n\n\n1\nF1\n0.027410\n\n\n2\nFalse Discovery Rate\n0.584310\n\n\n3\nFalse Negative Rate\n0.985634\n\n\n4\nPrecision\n0.415690\n\n\n5\nROC-AUC\n0.549876\n\n\n6\nRecall\n0.014366\n\n\n\n\n\n\n\n\n\nSub 5\n\nX = pd.DataFrame(ct5.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('SVM', X, Y, .0002, 4, 'stratified_target', cutoff=.25)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.630456\n\n\n1\nF1\n0.021362\n\n\n2\nFalse Discovery Rate\n0.723437\n\n\n3\nFalse Negative Rate\n0.988761\n\n\n4\nPrecision\n0.276562\n\n\n5\nROC-AUC\n0.547511\n\n\n6\nRecall\n0.011239"
+  },
+  {
+    "objectID": "documents/loans_code.html#lda",
+    "href": "documents/loans_code.html#lda",
+    "title": "Data Preparation",
+    "section": "LDA",
+    "text": "LDA\n\nSub 1\n\nX = pd.DataFrame(ct1.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('LDA', X, Y, .0002, 4, 'stratified_target', cutoff=.25)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.639540\n\n\n1\nF1\n0.425089\n\n\n2\nFalse Discovery Rate\n0.484637\n\n\n3\nFalse Negative Rate\n0.638066\n\n\n4\nPrecision\n0.515363\n\n\n5\nROC-AUC\n0.632198\n\n\n6\nRecall\n0.361934\n\n\n\n\n\n\n\n\n\nSub 2\n\nX = pd.DataFrame(ct2.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('LDA', X, Y, .0002, 4, 'stratified_target', cutoff=.25)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.646788\n\n\n1\nF1\n0.458219\n\n\n2\nFalse Discovery Rate\n0.469278\n\n\n3\nFalse Negative Rate\n0.595903\n\n\n4\nPrecision\n0.530722\n\n\n5\nROC-AUC\n0.648854\n\n\n6\nRecall\n0.404097\n\n\n\n\n\n\n\n\n\nSub 3\n\nX = pd.DataFrame(ct3.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('LDA', X, Y, .0002, 4, 'stratified_target', cutoff=.25)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.628821\n\n\n1\nF1\n0.408467\n\n\n2\nFalse Discovery Rate\n0.504374\n\n\n3\nFalse Negative Rate\n0.652270\n\n\n4\nPrecision\n0.495626\n\n\n5\nROC-AUC\n0.619167\n\n\n6\nRecall\n0.347730\n\n\n\n\n\n\n\n\n\nSub 4\n\nX = pd.DataFrame(ct4.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('LDA', X, Y, .0002, 4, 'stratified_target', cutoff=.25)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.582643\n\n\n1\nF1\n0.338686\n\n\n2\nFalse Discovery Rate\n0.399030\n\n\n3\nFalse Negative Rate\n0.595798\n\n\n4\nPrecision\n0.600970\n\n\n5\nROC-AUC\n0.614872\n\n\n6\nRecall\n0.404202\n\n\n\n\n\n\n\n\n\nSub 5\n\nX = pd.DataFrame(ct5.fit_transform(train_sub))\nY = train_sub['TARGET']\n\n\ncrossVal('LDA', X, Y, .0002, 4, 'stratified_target', cutoff=.25)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.642047\n\n\n1\nF1\n0.445041\n\n\n2\nFalse Discovery Rate\n0.482078\n\n\n3\nFalse Negative Rate\n0.609377\n\n\n4\nPrecision\n0.517922\n\n\n5\nROC-AUC\n0.643419\n\n\n6\nRecall\n0.390623"
+  },
+  {
+    "objectID": "documents/loans_code.html#increased-subsample-size",
+    "href": "documents/loans_code.html#increased-subsample-size",
+    "title": "Data Preparation",
+    "section": "Increased Subsample Size",
+    "text": "Increased Subsample Size\n\ntrain_sub2_pos = train_full[train_full['TARGET'] == 1].sample(20000).reset_index(drop=True)\ntrain_sub2_neg = train_full[train_full['TARGET'] == 0].sample(180000).reset_index(drop=True)\ntrain_sub2 = pd.concat([train_sub_pos, train_sub_neg], axis=0)\n\nX = pd.DataFrame(ct5.fit_transform(train_sub2))\nY = train_sub2['TARGET']\n\n\ncrossVal('LDA', X, Y, .0002, 4, 'k-fold', cutoff=.5)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.799200\n\n\n1\nF1\n0.019238\n\n\n2\nFalse Discovery Rate\n0.573214\n\n\n3\nFalse Negative Rate\n0.990120\n\n\n4\nPrecision\n0.426786\n\n\n5\nROC-AUC\n0.643805\n\n\n6\nRecall\n0.009880\n\n\n\n\n\n\n\n\ncrossVal('LDA', X, Y, .0002, 4, 'stratified_target', cutoff=.5)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.634317\n\n\n1\nF1\n0.021445\n\n\n2\nFalse Discovery Rate\n0.405398\n\n\n3\nFalse Negative Rate\n0.989067\n\n\n4\nPrecision\n0.594602\n\n\n5\nROC-AUC\n0.643184\n\n\n6\nRecall\n0.010933"
+  },
+  {
+    "objectID": "documents/loans_code.html#threshold-tuning",
+    "href": "documents/loans_code.html#threshold-tuning",
+    "title": "Data Preparation",
+    "section": "Threshold Tuning",
+    "text": "Threshold Tuning\n\nfor i in range(5, 35, 5):\n    print(f'Cutoff: {i/100}:')\n    print(crossVal('LDA', X, Y, .0002, 4, 'stratified_target', cutoff=i/100))\n    print()\n\nCutoff: 0.05:\n                 metric       val\n0              Accuracy  0.372055\n1                    F1  0.540213\n2  False Discovery Rate  0.629814\n3   False Negative Rate  0.000851\n4             Precision  0.370186\n5               ROC-AUC  0.642477\n6                Recall  0.999149\n\nCutoff: 0.1:\n                 metric       val\n0              Accuracy  0.419559\n1                    F1  0.548637\n2  False Discovery Rate  0.615939\n3   False Negative Rate  0.039671\n4             Precision  0.384061\n5               ROC-AUC  0.643473\n6                Recall  0.960329\n\nCutoff: 0.15:\n                 metric       val\n0              Accuracy  0.523855\n1                    F1  0.557890\n2  False Discovery Rate  0.575119\n3   False Negative Rate  0.187046\n4             Precision  0.424881\n5               ROC-AUC  0.641439\n6                Recall  0.812954\n\nCutoff: 0.2:\n                 metric       val\n0              Accuracy  0.609387\n1                    F1  0.537267\n2  False Discovery Rate  0.522120\n3   False Negative Rate  0.385715\n4             Precision  0.477880\n5               ROC-AUC  0.648132\n6                Recall  0.614285\n\nCutoff: 0.25:\n                 metric       val\n0              Accuracy  0.644871\n1                    F1  0.449691\n2  False Discovery Rate  0.473761\n3   False Negative Rate  0.607256\n4             Precision  0.526239\n5               ROC-AUC  0.644857\n6                Recall  0.392744\n\nCutoff: 0.3:\n                 metric       val\n0              Accuracy  0.642072\n1                    F1  0.296335\n2  False Discovery Rate  0.454260\n3   False Negative Rate  0.796388\n4             Precision  0.545740\n5               ROC-AUC  0.644214\n6                Recall  0.203612\n\nCutoff: 0.35:\n                 metric       val\n0              Accuracy  0.641237\n1                    F1  0.175046\n2  False Discovery Rate  0.419961\n3   False Negative Rate  0.896622\n4             Precision  0.580039\n5               ROC-AUC  0.641677\n6                Recall  0.103378\n\nCutoff: 0.4:\n                 metric       val\n0              Accuracy  0.641541\n1                    F1  0.104799\n2  False Discovery Rate  0.370946\n3   False Negative Rate  0.942778\n4             Precision  0.629054\n5               ROC-AUC  0.641220\n6                Recall  0.057222\n\n\n\nCutoff at 0.2 does well at balancing many of the different metrics. It has one of the largest F1-scores meaning it balances precision and recall very well. Additionally, it has one the larger values for accuracy, and keeps the false dicovery and false negative rate lower."
+  },
+  {
+    "objectID": "documents/loans_code.html#algorithm-comparison-conclusions",
+    "href": "documents/loans_code.html#algorithm-comparison-conclusions",
+    "title": "Data Preparation",
+    "section": "Algorithm Comparison Conclusions",
+    "text": "Algorithm Comparison Conclusions\nOverall, LogReg and LDA performed very similarly on this data. From the histograms we saw how the distributions of scores/probabilities were very similar for these two methods. Additionally, these models tended to produce similar predictions as seen in the table above.\nSVC differed heavily from LogReg and LDA. SVC struggled to produce different/spread out scores and probabilities for the testing data. This is seen in the histogram of its scores/probabilities above. This led to SVC predicting TARGET == 0 for a vast majority of observations and disagreeing with LDA and LogReg when these models predicted TARGET == 1"
+  },
+  {
+    "objectID": "documents/loans_code.html#fairness-metric-equalized-odds",
+    "href": "documents/loans_code.html#fairness-metric-equalized-odds",
+    "title": "Data Preparation",
+    "section": "Fairness Metric = Equalized Odds",
+    "text": "Fairness Metric = Equalized Odds\nEqualized odds says that a fair classifier should make predictions about a protected group with the same true positive rate and false positive rate as the other group. Therefore equalized odds consists of two metrics, the true pos rate and false positive rate which compare the predictions for the protected group to the other group.\nA fair model should have both the True Pos Rate and False Pos Rate values above 0.80. A fair model across the groups would desire values close to 1."
+  },
+  {
+    "objectID": "documents/loans_code.html#testing-fairness-of-different-models",
+    "href": "documents/loans_code.html#testing-fairness-of-different-models",
+    "title": "Data Preparation",
+    "section": "Testing Fairness of Different Models",
+    "text": "Testing Fairness of Different Models\n\ntrain_sub2_pos = train_full[train_full['TARGET'] == 1].sample(2000).reset_index(drop=True)\ntrain_sub2_neg = train_full[train_full['TARGET'] == 0].sample(8000).reset_index(drop=True)\ntrain_sub2 = pd.concat([train_sub_pos, train_sub_neg], axis=0)\nprot_group = (train_sub2['CODE_GENDER'] == 'F').astype(int)\n\n\nBest Predictive Model w/ Gender Included\n\nct6 = make_column_transformer(\n    (OrdinalEncoder(), ['FLAG_OWN_CAR']),\n    (StandardScaler(), ['DAYS_BIRTH', 'REFUSED', 'N_ONTIME_PAY', 'N_PAYMENTS', 'DEF_30_CNT_SOCIAL_CIRCLE']),\n    (OneHotEncoder(), [\"NAME_EDUCATION_TYPE\", 'NAME_INCOME_TYPE', 'REGION_RATING_CLIENT_W_CITY', 'CODE_GENDER']),\n    remainder=\"drop\"\n)\n\nX = pd.DataFrame(ct6.fit_transform(train_sub2))\nY = train_sub2['TARGET']\n\n\ncrossVal('LDA', X, Y, .0002, 4, 'stratified_target', cutoff=.2, prot_group_data=prot_group)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.614305\n\n\n1\nF1\n0.542041\n\n\n2\nFalse Discovery Rate\n0.519903\n\n\n3\nFalse Negative Rate\n0.376203\n\n\n4\nFalse Pos Rate\n1.059275\n\n\n5\nPrecision\n0.480097\n\n\n6\nROC-AUC\n0.650752\n\n\n7\nRecall\n0.623797\n\n\n8\nTrue Pos Rate\n1.059431\n\n\n\n\n\n\n\nThe results above are interesting. We see the False Pos Rate and True Pos Rate are still both close to 1. This means including gender does not compromise the fairness of the best predictive model.\n\n\nLogReg Models\n\nX = pd.DataFrame(ct5.fit_transform(train_sub2))\nY = train_sub2['TARGET']\n\ncrossVal('logReg', X, Y, .0002, 4, 'stratified_target', cutoff=.2, prot_group_data=prot_group)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.593781\n\n\n1\nF1\n0.532630\n\n\n2\nFalse Discovery Rate\n0.537877\n\n\n3\nFalse Negative Rate\n0.370711\n\n\n4\nFalse Pos Rate\n0.899140\n\n\n5\nPrecision\n0.462123\n\n\n6\nROC-AUC\n0.638376\n\n\n7\nRecall\n0.629289\n\n\n8\nTrue Pos Rate\n0.992429\n\n\n\n\n\n\n\nThe logistic regression model using variable set 5 which was our optimal set produces another fiar model. We see both the False Pos rate and True pos rate are above 0.80.\n\nX = pd.DataFrame(ct6.fit_transform(train_sub2))\nY = train_sub2['TARGET']\n\ncrossVal('logReg', X, Y, .0002, 4, 'stratified_target', cutoff=.2, prot_group_data=prot_group)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.606369\n\n\n1\nF1\n0.540987\n\n\n2\nFalse Discovery Rate\n0.524680\n\n\n3\nFalse Negative Rate\n0.371471\n\n\n4\nFalse Pos Rate\n1.000128\n\n\n5\nPrecision\n0.475320\n\n\n6\nROC-AUC\n0.646699\n\n\n7\nRecall\n0.628529\n\n\n8\nTrue Pos Rate\n0.987097\n\n\n\n\n\n\n\nThe model using Logistic Regression with the same variable set including gender is extremely fair according to equalized odds across gender."
+  },
+  {
+    "objectID": "documents/loans_code.html#fairness-for-our-best-predictive-model",
+    "href": "documents/loans_code.html#fairness-for-our-best-predictive-model",
+    "title": "Data Preparation",
+    "section": "Fairness for our best predictive Model",
+    "text": "Fairness for our best predictive Model\n\nX = pd.DataFrame(ct5.fit_transform(train_sub2))\nY = train_sub2['TARGET']\n\n\ncrossVal('LDA', X, Y, .0002, 4, 'stratified_target', cutoff=.2, prot_group_data=prot_group)\n\n\n\n\n\n\n\n\nmetric\nval\n\n\n\n\n0\nAccuracy\n0.601005\n\n\n1\nF1\n0.526430\n\n\n2\nFalse Discovery Rate\n0.532138\n\n\n3\nFalse Negative Rate\n0.397757\n\n\n4\nFalse Pos Rate\n0.950426\n\n\n5\nPrecision\n0.467862\n\n\n6\nROC-AUC\n0.634791\n\n\n7\nRecall\n0.602243\n\n\n8\nTrue Pos Rate\n1.005951\n\n\n\n\n\n\n\nLooking at the False Pos Rate and the True Pos Rate, our best predictive model is very fair. The True Pos Rate and False Pos Rate are both very close to 1 indicating the model predictions are very similar for males and females.\n\nFairness vs Threshold\n\nfor i in range(5, 35, 5):\n    print(f'Cutoff: {i/100}:')\n    print(crossVal('LDA', X, Y, .0002, 4, 'stratified_target', cutoff=i/100, prot_group_data=prot_group))\n    print()\n\nCutoff: 0.05:\n                 metric       val\n0              Accuracy  0.371762\n1                    F1  0.538658\n2  False Discovery Rate  0.631287\n3   False Negative Rate  0.000570\n4        False Pos Rate  0.999294\n5             Precision  0.368713\n6               ROC-AUC  0.651276\n7                Recall  0.999430\n8         True Pos Rate  1.000287\n\nCutoff: 0.1:\n                 metric       val\n0              Accuracy  0.427138\n1                    F1  0.550701\n2  False Discovery Rate  0.613252\n3   False Negative Rate  0.043894\n4        False Pos Rate  1.004713\n5             Precision  0.386748\n6               ROC-AUC  0.652100\n7                Recall  0.956106\n8         True Pos Rate  0.994966\n\nCutoff: 0.15:\n                 metric       val\n0              Accuracy  0.542336\n1                    F1  0.566825\n2  False Discovery Rate  0.563112\n3   False Negative Rate  0.192238\n4        False Pos Rate  0.993376\n5             Precision  0.436888\n6               ROC-AUC  0.649567\n7                Recall  0.807762\n8         True Pos Rate  1.011801\n\nCutoff: 0.2:\n                 metric       val\n0              Accuracy  0.608619\n1                    F1  0.536680\n2  False Discovery Rate  0.526661\n3   False Negative Rate  0.380061\n4        False Pos Rate  1.010576\n5             Precision  0.473339\n6               ROC-AUC  0.652657\n7                Recall  0.619939\n8         True Pos Rate  0.978003\n\nCutoff: 0.25:\n                 metric       val\n0              Accuracy  0.647128\n1                    F1  0.454263\n2  False Discovery Rate  0.471020\n3   False Negative Rate  0.601275\n4        False Pos Rate  0.918154\n5             Precision  0.528980\n6               ROC-AUC  0.651767\n7                Recall  0.398725\n8         True Pos Rate  1.011293\n\nCutoff: 0.3:\n                 metric       val\n0              Accuracy  0.644753\n1                    F1  0.317746\n2  False Discovery Rate  0.455527\n3   False Negative Rate  0.775236\n4        False Pos Rate  0.980993\n5             Precision  0.544473\n6               ROC-AUC  0.650409\n7                Recall  0.224764\n8         True Pos Rate  1.020681\n\n\n\nFrom the results above, we see the fairness of the model is fairly constant across different thresholds. We see that the false pos rate and true pos rate are consistently above 0.8 and close to 1."
+  },
+  {
+    "objectID": "documents/loans_code.html#final-fairness-analysis",
+    "href": "documents/loans_code.html#final-fairness-analysis",
+    "title": "Data Preparation",
+    "section": "Final Fairness Analysis",
+    "text": "Final Fairness Analysis\nBecause our best predictive model was also extremely fair when examining females as a protected group when looking at equalized odds, there were no sacrifices needing to be made with respect to the predictive performance of the model. Additoinal models that were tested to examine fairness also produced very good results with respect to fairness however none of these models were able to be significantly more fair than our best predictive model and top its prediction performance."
+  },
+  {
+    "objectID": "surv.html",
+    "href": "surv.html",
+    "title": "Survival Analysis",
     "section": "",
-    "text": "The goal of this project was to develop predictive models that can be used to detect diagnoses for diabetes and heart disease in patients This was a mock data science project with the American College of Cardiology (ACC) as the client. The ACC is an organization dedicated to improving cardiovascular health by providing healthcare professionals with cutting-edge tools and resources to enhance patient care. While developing our models, we made a constant effort to build models which supported equal outcomes for both male and female patients as there can often be differences in symptoms that lead to unequal outcomes. This work was completed in collaboration with Rachel Roggenkemper and Jacob Perez.\nThis project was done using R and the tidymodels package.\nProposal\nPresentation"
+    "text": "For this project we will be perform survival analysis techniques on data from a balance test that was conducted by the US Center for Disease Control (CDC). More specifically, the test was conducted by the CDC from 2001 to 2002 and contains the results for 2238 participants as part of the National Health and Nutrition Examination Survey (NHANES). This analysis includes the use and interpretation of parametric survival methods, non-parametric survival methods, and cox-regression. This work was done in collaboration with Martin Hsu, Lucas Fonda, and Jason Blake.\nThis project was done using R.\nFinal Report"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Porfolio",
+    "section": "",
+    "text": "WORK IN PROGRESS"
+  },
+  {
+    "objectID": "projects.html#data-science-projects",
+    "href": "projects.html#data-science-projects",
+    "title": "Porfolio",
+    "section": "Data Science Projects",
+    "text": "Data Science Projects\n    Thesis\n    European Football Leagues Project\n    Step Counting Project\n    Classifying Risky Mortgage Applicants\n    Detecting Heart Disease and Diabetes Project"
+  },
+  {
+    "objectID": "projects.html#statistics-projects",
+    "href": "projects.html#statistics-projects",
+    "title": "Porfolio",
+    "section": "Statistics Projects",
+    "text": "Statistics Projects\n    Design and Analysis of Experiments\n    Linear Regression\n    Survival Analysis\n    Multi-level and Mixed Modeling"
+  },
+  {
+    "objectID": "doe.html",
+    "href": "doe.html",
+    "title": "Design and Analysis of Experiments",
+    "section": "",
+    "text": "For this project, we developed an experimental design, collected data, and performed an analysis testing whether differences in the type of water used and brewing time cause differences in the pH of black tea. Our experimental design was a completely randomized design with a two-way analysis of variance (ANOVA) used to analyze the data. This experiment was conducted in collaboration with Brandon Kim and Ken Xie.\nWhile this analysis was done early in our respective college careers, and we have long since grown in our ability to write technical reports, it reinforces the important factors that go into designing an experiment and when statisticians can draw cause and effect conclusions. Looking back, running an experiment with friends was also really fun.\nThe data was analyzed using jmp.\nFinal Report"
+  },
+  {
+    "objectID": "step_count.html",
+    "href": "step_count.html",
+    "title": "Step Counting Project",
+    "section": "",
+    "text": "For this project, we used activity data collected, and labeled by the CalPoly Kinesiology Department to develop a new step counting algorithm. We began by evaluating an existing algorithm developed by the UK Biobank and developed a modified algorithm by leveraging the labeled categories in our dataset that were not included in the UK Biobank data.\nThis project was done as part of the Data Science Capstone for Cal Poly SLO and was completed under the guidance of Dr. Hunter Glanz, Dr. Jonathan Ventura, and Dr. Sarah Keadle and in collaboration with Martin Hsu, Kirina Sirohi, Jadyn Ellis, and Paige Dolan.\nThis project was done using python.\nFinal Report\nPresentation"
+  },
+  {
+    "objectID": "thesis.html",
+    "href": "thesis.html",
+    "title": "Thesis",
+    "section": "",
+    "text": "For my thesis, I contributed two new methods to the tidyclust package in R. The tidyclust package exists as a part of the tidyverse collection of packages to unify implementations for unsupervised learning methods under a common interface that is user-friendly and follows design principles from the tidyverse. The two methods I added were density-based clustering using the DBSCAN algorithm and model-based clustering using Gaussian mixture models. For this work, I had to research each respective method and write code to bring each method into tidyclust, justifying my design choices along the way, which you can read more about in my paper or see in my presentation!\nThesis Paper - Density-Based and Model-Based Clustering with tidyclust in R\nThesis Code - tidyclust Package\nThesis Presentation"
   },
   {
     "objectID": "resume.html",
@@ -63,46 +231,18 @@
     "text": "Certifications and Awards\n\nAcademic Excellence in Statistics\nAwarded for Highest GPA in Statistics Major\nJune 2025\n\n\nNational Statistics Honarary Society Member\nMu Sigma Rho\nJune 2024\n\n\nSAS Certified Specialist: Base Programming Specialist Using SAS 9.4\nSAS Certification\nMarch 2022"
   },
   {
-    "objectID": "thesis.html",
-    "href": "thesis.html",
-    "title": "Thesis",
+    "objectID": "hd_diab.html",
+    "href": "hd_diab.html",
+    "title": "Detecting Heart Disease and Diabetes Project",
     "section": "",
-    "text": "For my thesis, I contributed two new methods to the tidyclust package in R. The tidyclust package exists as a part of the tidyverse collection of packages to unify implementations for unsupervised learning methods under a common interface that is user-friendly and follows design principles from the tidyverse. The two methods I added were density-based clustering using the DBSCAN algorithm and model-based clustering using Gaussian mixture models. For this work, I had to research each respective method and write code to bring each method into tidyclust, justifying my design choices along the way, which you can read more about in my paper or see in my presentation!\nThesis Paper - Density-Based and Model-Based Clustering with tidyclust in R\nThesis Code - tidyclust Package\nThesis Presentation"
+    "text": "The goal of this project was to develop predictive models that can be used to detect diagnoses for diabetes and heart disease in patients This was a mock data science project with the American College of Cardiology (ACC) as the client. The ACC is an organization dedicated to improving cardiovascular health by providing healthcare professionals with cutting-edge tools and resources to enhance patient care. While developing our models, we made a constant effort to build models which supported equal outcomes for both male and female patients as there can often be differences in symptoms that lead to unequal outcomes. This work was completed in collaboration with Rachel Roggenkemper and Jacob Perez.\nThis project was done using R and the tidymodels package.\nProposal\nPresentation"
   },
   {
-    "objectID": "step_count.html",
-    "href": "step_count.html",
-    "title": "Step Counting Project",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Brendan Callender",
     "section": "",
-    "text": "For this project, we used activity data collected, and labeled by the CalPoly Kinesiology Department to develop a new step counting algorithm. We began by evaluating an existing algorithm developed by the UK Biobank and developed a modified algorithm by leveraging the labeled categories in our dataset that were not included in the UK Biobank data.\nThis project was done as part of the Data Science Capstone for Cal Poly SLO and was completed under the guidance of Dr. Hunter Glanz, Dr. Jonathan Ventura, and Dr. Sarah Keadle and in collaboration with Martin Hsu, Kirina Sirohi, Jadyn Ellis, and Paige Dolan.\nThis project was done using python.\nFinal Report\nPresentation"
-  },
-  {
-    "objectID": "doe.html",
-    "href": "doe.html",
-    "title": "Design and Analysis of Experiments",
-    "section": "",
-    "text": "For this project, we developed an experimental design, collected data, and performed an analysis testing whether differences in the type of water used and brewing time cause differences in the pH of black tea. Our experimental design was a completely randomized design with a two-way analysis of variance (ANOVA) used to analyze the data. This experiment was conducted in collaboration with Brandon Kim and Ken Xie.\nWhile this analysis was done early in our respective college careers, and we have long since grown in our ability to write technical reports, it reinforces the important factors that go into designing an experiment and when statisticians can draw cause and effect conclusions. Looking back, running an experiment with friends was also really fun.\nThe data was analyzed using jmp.\nFinal Report"
-  },
-  {
-    "objectID": "projects.html",
-    "href": "projects.html",
-    "title": "Porfolio",
-    "section": "",
-    "text": "WORK IN PROGRESS"
-  },
-  {
-    "objectID": "projects.html#data-science-projects",
-    "href": "projects.html#data-science-projects",
-    "title": "Porfolio",
-    "section": "Data Science Projects",
-    "text": "Data Science Projects\n    Thesis\n    European Football Leagues Project\n    Step Counting Project\n    Detecting Heart Disease and Diabetes Project"
-  },
-  {
-    "objectID": "projects.html#statistics-projects",
-    "href": "projects.html#statistics-projects",
-    "title": "Porfolio",
-    "section": "Statistics Projects",
-    "text": "Statistics Projects\n    Design and Analysis of Experiments\n    Linear Regression\n    Survival Analysis\n    Multi-level and Mixed Modeling"
+    "text": "California Polytechnic State University, San Luis Obispo\nM.S. Statistics, Minor in Data Science"
   },
   {
     "objectID": "efl_proj.html",
@@ -112,10 +252,17 @@
     "text": "For this project, I work with 2021-2022 season data for the top 5 European football leagues. The data was acquired from FBref and spans Passing, Shooting, Defense, Shot Creating Actions, and Possession statistics.\nThe goal of this project was to model professional footballers playstyles using their recorded, on-field actions, rather than just their positions. This project would aid with team building by being able to find replacement players who can fill the same role as the player they replace. Additionally, It can identify undervalued players who play valuable roles for their team.\nFor this project I used python.\nGithub Repository\nPresentation"
   },
   {
-    "objectID": "surv.html",
-    "href": "surv.html",
-    "title": "Survival Analysis",
+    "objectID": "mmm.html",
+    "href": "mmm.html",
+    "title": "Multi-level and Mixed Modeling",
     "section": "",
-    "text": "For this project we will be perform survival analysis techniques on data from a balance test that was conducted by the US Center for Disease Control (CDC). More specifically, the test was conducted by the CDC from 2001 to 2002 and contains the results for 2238 participants as part of the National Health and Nutrition Examination Survey (NHANES). This analysis includes the use and interpretation of parametric survival methods, non-parametric survival methods, and cox-regression. This work was done in collaboration with Martin Hsu, Lucas Fonda, and Jason Blake.\nThis project was done using R.\nFinal Report"
+    "text": "In this project, using a linear mixed-effects model to answer what factors are most associated with higher or lower point totals in the English Premier League (EPL). We also examine whether spending more money on players is associated with achieving higher point totals. This work was done in collaboration with Dylan Li and Liam Quach.\nThis project was done using R.\nCode\nFinal Report\nFinal Presentation"
+  },
+  {
+    "objectID": "loans.html",
+    "href": "loans.html",
+    "title": "Classifying Risky Mortgage Applicants",
+    "section": "",
+    "text": "For this project, we were asked to pose as data scientists working in the mortages division of a bank. We were tasked with building a predictive model to determine whether a morgage applicant will be able to repay their loan. The data for the project can be found in the Kaggle competition here. This work was completed in collaboration with Martin Hsu, Joshua Blank, Alex Arrieta, and Sophia Chung.\nFor this project we tested models using logistic regression, support vector machines (SVM), and linear discriminant analysis (LDA). In this project we were asked to implement cross validation and model metrics by hand. For this task, we considered ROC-AUC, Accuracy, F1-Score, and more. In the data we encounter a major class imbalance with approximately only 10% of creditors being unable to repay their loans. To account for this, we used oversampling when training our models to facilitate more balanced predictions. In this project, we were also tasked with considering fairness and selecting a model that does not discriminate according to age, gender, race, and marital status which is illegal under the Fair Housing and Equal Credit Opportunity Acts. For more details about the project description and instructions, see the description file below.\nThis project was done using python.\nProject Description\nCode\nProject Proposal\nFinal Report\nFinal Presentation"
   }
 ]
