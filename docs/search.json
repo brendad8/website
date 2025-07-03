@@ -14,67 +14,32 @@
     "text": "WORK IN PROGRESS"
   },
   {
-    "objectID": "projects.html#thesis",
-    "href": "projects.html#thesis",
+    "objectID": "projects.html#data-science-projects",
+    "href": "projects.html#data-science-projects",
     "title": "Porfolio",
-    "section": "Thesis",
-    "text": "Thesis"
+    "section": "Data Science Projects",
+    "text": "Data Science Projects\n    Thesis\n    European Football Leagues Project\n    Step Counting Project\n    Detecting Heart Disease and Diabetes Project"
   },
   {
-    "objectID": "projects.html#european-football-leagues-project",
-    "href": "projects.html#european-football-leagues-project",
+    "objectID": "projects.html#statistics-projects",
+    "href": "projects.html#statistics-projects",
     "title": "Porfolio",
-    "section": "European Football Leagues Project",
-    "text": "European Football Leagues Project"
+    "section": "Statistics Projects",
+    "text": "Statistics Projects\n    Design and Analysis of Experiments\n    Linear Regression\n    Survival Analysis\n    Multi-level and Mixed Modeling"
   },
   {
-    "objectID": "projects.html#step-counting",
-    "href": "projects.html#step-counting",
-    "title": "Porfolio",
-    "section": "Step Counting",
-    "text": "Step Counting"
+    "objectID": "doe.html",
+    "href": "doe.html",
+    "title": "Design and Analysis of Experiments",
+    "section": "",
+    "text": "For this project, we developed an experimental design, collected data, and performed an analysis testing whether differences in the type of water used and brewing time cause differences in the pH of black tea. Our experimental design was a completely randomized design with a two-way analysis of variance (ANOVA) used to analyze the data. This experiment was conducted in collaboration with Brandon Kim and Ken Xie.\nWhile this analysis was done early in our respective college careers, and we have long since grown in our ability to write technical reports, it reinforces the important factors that go into designing an experiment and when statisticians can draw cause and effect conclusions. Looking back, running an experiment with friends was also really fun.\nThe data was analyzed using jmp.\nFinal Report"
   },
   {
-    "objectID": "projects.html#detecting-heart-disease-and-diabetes-project",
-    "href": "projects.html#detecting-heart-disease-and-diabetes-project",
-    "title": "Porfolio",
-    "section": "Detecting Heart Disease and Diabetes Project",
-    "text": "Detecting Heart Disease and Diabetes Project"
-  },
-  {
-    "objectID": "projects.html#design-and-analysis-of-experiments",
-    "href": "projects.html#design-and-analysis-of-experiments",
-    "title": "Porfolio",
-    "section": "Design and Analysis of Experiments",
-    "text": "Design and Analysis of Experiments"
-  },
-  {
-    "objectID": "projects.html#linear-regression",
-    "href": "projects.html#linear-regression",
-    "title": "Porfolio",
-    "section": "Linear Regression",
-    "text": "Linear Regression"
-  },
-  {
-    "objectID": "projects.html#survival-analysis",
-    "href": "projects.html#survival-analysis",
-    "title": "Porfolio",
-    "section": "Survival Analysis",
-    "text": "Survival Analysis"
-  },
-  {
-    "objectID": "projects.html#multi-level-and-mixed-modeling",
-    "href": "projects.html#multi-level-and-mixed-modeling",
-    "title": "Porfolio",
-    "section": "Multi-level and Mixed Modeling",
-    "text": "Multi-level and Mixed Modeling"
-  },
-  {
-    "objectID": "projects.html#project-3",
-    "href": "projects.html#project-3",
-    "title": "Porfolio",
-    "section": "Project 3",
-    "text": "Project 3"
+    "objectID": "step_count.html",
+    "href": "step_count.html",
+    "title": "Step Counting Project",
+    "section": "",
+    "text": "For this project, we used activity data collected, and labeled by the CalPoly Kinesiology Department to develop a new step counting algorithm. We began by evaluating an existing algorithm developed by the UK Biobank and developed a modified algorithm by leveraging the labeled categories in our dataset that were not included in the UK Biobank data.\nThis project was done as part of the Data Science Capstone for Cal Poly SLO and was completed under the guidance of Dr. Hunter Glanz, Dr. Jonathan Ventura, and Dr. Sarah Keadle and in collaboration with Martin Hsu, Kirina Sirohi, Jadyn Ellis, and Paige Dolan.\nThis project was done using both python and R.\nFinal Report\nPresentation"
   },
   {
     "objectID": "thesis.html",
@@ -126,17 +91,17 @@
     "text": "Certifications and Awards\n\nAcademic Excellence in Statistics\nAwarded for Highest GPA in Statistics Major\nJune 2025\n\n\nNational Statistics Honarary Society Member\nMu Sigma Rho\nJune 2024\n\n\nSAS Certified Specialist: Base Programming Specialist Using SAS 9.4\nSAS Certification\nMarch 2022"
   },
   {
+    "objectID": "hd_diab.html",
+    "href": "hd_diab.html",
+    "title": "Detecting Heart Disease and Diabetes Project",
+    "section": "",
+    "text": "The goal of this project was to develop predictive models that can be used to detect diagnoses for diabetes and heart disease in patients This was a mock data science project with the American College of Cardiology (ACC) as the client. The ACC is an organization dedicated to improving cardiovascular health by providing healthcare professionals with cutting-edge tools and resources to enhance patient care. While developing our models, we made a constant effort to build models which supported equal outcomes for both male and female patients as there can often be differences in symptoms that lead to unequal outcomes. This work was completed in collaboration with Rachel Roggenkemper and Jacob Perez.\nThis project was done using R and the tidymodels package.\nProposal\nPresentation"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Brendan Callender",
     "section": "",
     "text": "California Polytechnic State University, San Luis Obispo\nM.S. Statistics, Minor in Data Science"
-  },
-  {
-    "objectID": "step_count.html",
-    "href": "step_count.html",
-    "title": "Step Counting Project",
-    "section": "",
-    "text": "For this project, we used activity data collected, and labeled by the CalPoly Kinesiology Department to develop a new step counting algorithm. We began by evaluating an existing algorithm developed by the UK Biobank and developed a modified algorithm by leveraging the labeled categories in our dataset that were not included in the UK Biobank data.\nThis project was done as part of the Data Science Capstone for Cal Poly SLO and was completed under the guidance of Dr. Hunter Glanz, Dr. Jonathan Ventura, and Dr. Sarah Keadle and in collaboration with Martin Hsu, Kirina Sirohi, Jadyn Ellis, and Paige Dolan.\nThis project was done using both python and R.\nFinal Report\nPresentation"
   }
 ]

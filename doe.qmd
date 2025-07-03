@@ -1,0 +1,11 @@
+---
+title: "Design and Analysis of Experiments"
+---
+
+For this project, we **developed an experimental design**, **collected data**, and **performed an analysis** testing whether differences in the type of water used and brewing time cause differences in the pH of black tea. Our experimental design was a **completely randomized design** with a **two-way analysis of variance** (ANOVA) used to analyze the data. This experiment was conducted in collaboration with Brandon Kim and Ken Xie.
+
+While this analysis was done early in our respective college careers, and we have long since grown in our ability to write technical reports, it reinforces the important factors that go into designing an experiment and when statisticians can draw **cause and effect** conclusions. Looking back, running an experiment with friends was also really fun.
+
+The data was analyzed using `jmp`.
+
+[Final Report](documents/tea_time.pdf)
