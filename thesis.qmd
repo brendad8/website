@@ -9,4 +9,4 @@ For my thesis, I contributed two new methods to the `tidyclust` package in `R`. 
 
 [Thesis Code - tidyclust Package](https://github.com/brendad8/tidyclust)
 
-[Thesis Presentation](https://github.com/brendad8/thesis/blob/main/thesis_presentation.pdf)
+[Thesis Presentation](documents/thesis_presentation.pdf)

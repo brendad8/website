@@ -1,0 +1,14 @@
+---
+title: "European Football Leagues Project"
+---
+
+For this project, I work with 2021-2022 season data for the top 5 European football leagues. The data was acquired from [FBref](https://fbref.com/en/) and spans Passing, Shooting, Defense, Shot Creating Actions, and Possession statistics.
+
+The goal of this project was to model professional footballers playstyles using their recorded, on-field actions, rather than just their positions. This project would aid with team building by being able to find replacement players who can fill the same role as the player they replace. Additionally, It can identify undervalued players who play valuable roles for their team.
+
+For this project I used `python`.
+
+[Github Repository](https://fbref.com/en/)
+
+[Presentation](documents/efl_pres.pdf)
+

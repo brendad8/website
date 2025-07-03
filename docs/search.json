@@ -1,10 +1,87 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Brendan Callender",
+    "objectID": "efl_proj.html",
+    "href": "efl_proj.html",
+    "title": "European Football Leagues Project",
     "section": "",
-    "text": "California Polytechnic State University, San Luis Obispo\nM.S. Statistics, Minor in Data Science"
+    "text": "For this project, I work with 2021-2022 season data for the top 5 European football leagues. The data was acquired from FBref and spans Passing, Shooting, Defense, Shot Creating Actions, and Possession statistics.\nThe goal of this project was to model professional footballers playstyles using their recorded, on-field actions, rather than just their positions. This project would aid with team building by being able to find replacement players who can fill the same role as the player they replace. Additionally, It can identify undervalued players who play valuable roles for their team.\nFor this project I used python.\nGithub Repository\nPresentation"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Porfolio",
+    "section": "",
+    "text": "WORK IN PROGRESS"
+  },
+  {
+    "objectID": "projects.html#thesis",
+    "href": "projects.html#thesis",
+    "title": "Porfolio",
+    "section": "Thesis",
+    "text": "Thesis"
+  },
+  {
+    "objectID": "projects.html#european-football-leagues-project",
+    "href": "projects.html#european-football-leagues-project",
+    "title": "Porfolio",
+    "section": "European Football Leagues Project",
+    "text": "European Football Leagues Project"
+  },
+  {
+    "objectID": "projects.html#step-counting",
+    "href": "projects.html#step-counting",
+    "title": "Porfolio",
+    "section": "Step Counting",
+    "text": "Step Counting"
+  },
+  {
+    "objectID": "projects.html#detecting-heart-disease-and-diabetes-project",
+    "href": "projects.html#detecting-heart-disease-and-diabetes-project",
+    "title": "Porfolio",
+    "section": "Detecting Heart Disease and Diabetes Project",
+    "text": "Detecting Heart Disease and Diabetes Project"
+  },
+  {
+    "objectID": "projects.html#design-and-analysis-of-experiments",
+    "href": "projects.html#design-and-analysis-of-experiments",
+    "title": "Porfolio",
+    "section": "Design and Analysis of Experiments",
+    "text": "Design and Analysis of Experiments"
+  },
+  {
+    "objectID": "projects.html#linear-regression",
+    "href": "projects.html#linear-regression",
+    "title": "Porfolio",
+    "section": "Linear Regression",
+    "text": "Linear Regression"
+  },
+  {
+    "objectID": "projects.html#survival-analysis",
+    "href": "projects.html#survival-analysis",
+    "title": "Porfolio",
+    "section": "Survival Analysis",
+    "text": "Survival Analysis"
+  },
+  {
+    "objectID": "projects.html#multi-level-and-mixed-modeling",
+    "href": "projects.html#multi-level-and-mixed-modeling",
+    "title": "Porfolio",
+    "section": "Multi-level and Mixed Modeling",
+    "text": "Multi-level and Mixed Modeling"
+  },
+  {
+    "objectID": "projects.html#project-3",
+    "href": "projects.html#project-3",
+    "title": "Porfolio",
+    "section": "Project 3",
+    "text": "Project 3"
+  },
+  {
+    "objectID": "thesis.html",
+    "href": "thesis.html",
+    "title": "Thesis",
+    "section": "",
+    "text": "For my thesis, I contributed two new methods to the tidyclust package in R. The tidyclust package exists as a part of the tidyverse collection of packages to unify implementations for unsupervised learning methods under a common interface that is user-friendly and follows design principles from the tidyverse. The two methods I added were density-based clustering using the DBSCAN algorithm and model-based clustering using Gaussian mixture models. For this work, I had to research each respective method and write code to bring each method into tidyclust, justifying my design choices along the way, which you can read more about in my paper or see in my presentation!\nThesis Paper - Density-Based and Model-Based Clustering with tidyclust in R\nThesis Code - tidyclust Package\nThesis Presentation"
   },
   {
     "objectID": "resume.html",
@@ -49,24 +126,17 @@
     "text": "Certifications and Awards\n\nAcademic Excellence in Statistics\nAwarded for Highest GPA in Statistics Major\nJune 2025\n\n\nNational Statistics Honarary Society Member\nMu Sigma Rho\nJune 2024\n\n\nSAS Certified Specialist: Base Programming Specialist Using SAS 9.4\nSAS Certification\nMarch 2022"
   },
   {
-    "objectID": "thesis.html",
-    "href": "thesis.html",
-    "title": "Thesis",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Brendan Callender",
     "section": "",
-    "text": "For my thesis, I contributed two new methods to the tidyclust package in R. The tidyclust package exists as a part of the tidyverse collection of packages to unify implementations for unsupervised learning methods under a common interface that is user-friendly and follows design principles from the tidyverse. The two methods I added were density-based clustering using the DBSCAN algorithm and model-based clustering using Gaussian mixture models. For this work, I had to research each respective method and write code to bring each method into tidyclust, justifying my design choices along the way, which you can read more about in my paper or see in my presentation!\nThesis Paper - Density-Based and Model-Based Clustering with tidyclust in R\nThesis Code - tidyclust Package\nThesis Presentation"
+    "text": "California Polytechnic State University, San Luis Obispo\nM.S. Statistics, Minor in Data Science"
   },
   {
-    "objectID": "projects.html",
-    "href": "projects.html",
-    "title": "Porfolio",
+    "objectID": "step_count.html",
+    "href": "step_count.html",
+    "title": "Step Counting Project",
     "section": "",
-    "text": "WORK IN PROGRESS"
-  },
-  {
-    "objectID": "projects.html#thesis",
-    "href": "projects.html#thesis",
-    "title": "Porfolio",
-    "section": "Thesis",
-    "text": "Thesis"
+    "text": "For this project, we used activity data collected, and labeled by the CalPoly Kinesiology Department to develop a new step counting algorithm. We began by evaluating an existing algorithm developed by the UK Biobank and developed a modified algorithm by leveraging the labeled categories in our dataset that were not included in the UK Biobank data.\nThis project was done as part of the Data Science Capstone for Cal Poly SLO and was completed under the guidance of Dr. Hunter Glanz, Dr. Jonathan Ventura, and Dr. Sarah Keadle and in collaboration with Martin Hsu, Kirina Sirohi, Jadyn Ellis, and Paige Dolan.\nThis project was done using both python and R.\nFinal Report\nPresentation"
   }
 ]

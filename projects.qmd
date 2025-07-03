@@ -4,5 +4,24 @@ title: "Porfolio"
 
 **WORK IN PROGRESS**
 
+# Data Science
+
 ## [Thesis](thesis.qmd)
+  
+## [European Football Leagues Project](efl_proj.qmd)
+  
+## [Step Counting Project](step_count.qmd)
+
+## Detecting Heart Disease and Diabetes Project
+
+# Statistics
+
+## Design and Analysis of Experiments
+
+## Linear Regression
+
+## Survival Analysis
+
+## Multi-level and Mixed Modeling
+
 
