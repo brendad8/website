@@ -1,0 +1,124 @@
+---
+title: "Resume"
+---
+
+## Education
+
+**California Polytechnic University San Luis Obispo**
+
+\ \ \ \ \ M.S. Statistics, Minor in Data Science
+
+**Graduated: June 2025**
+
+\ \ \ \ \ GPA: 3.98 / 4.0
+
+
+
+## Experience
+
+
+### Inari Medical (Now Stryker)
+
+June 2024 - June 2025
+
+Statistical Programming Intern / Consultant
+
+* Led the development of a custom process for creating analysis datasets in R, with seamless transfer capabilities to SAS,
+supporting the potential use of R for production programming over SAS
+
+* Developed a custom QC function in R to standardize dataset validation across the team, incorporating automated checks and
+custom functionalities to make QC checks more robust
+
+* Explored the use of a generative AI for common statistical programming tasks to assess its effectiveness, limitations, and
+integration potential for future projects
+
+* Supported company clinical research with creation of analysis datasets, tables, listings, and figures using both R and SAS
+
+
+
+### First American Title Insurance Company
+
+June 2022 - August 2022
+
+Data & Analytics Intern
+
+* Created reusable SQL procedures summarizing housing data into monthly trends tracking the number of houses for sale, houses sold, new listings, pending sales, and more
+
+* Built an interactive, auto-refreshing dashboard to visualize housing trends, enabling the real-time updates for trends in the housing market
+
+* Cleaned, merged, and validated malformed client and company data across many platforms (SQL Server, Snowflake, Excel), to
+answer company and client information needs
+
+
+
+
+
+## [Projects](projects.qmd)
+
+### [Thesis](thesis.qmd)
+
+June 2025
+
+Density-Based and Model-Based Clustering with `tidyclust` in `R`
+
+* Contributed implementations for DBSCAN and Gaussian Mixture Models (GMMs) to the tidyclust package in R, expanding the
+package to include density-based and model-based clustering
+
+* Independently researched each method to justify design choices around model arguments, fitting, prediction, and tuning, ensuring each model is self-documenting, user-friendly, and aligned with principles demonstrated in the tidyverse
+
+* Designed a novel way to parameterize different GMM model specifications, enabling users to more easily select model
+specifications aligned with their data characteristics
+
+* Implemented a modification to the DBSCAN algorithm to make the algorithm deterministic and return the same cluster
+assignments regardless of the order the data was processed
+
+
+### European Football Leagues Player Profiles Project
+
+February 2023
+
+* Modeled professional soccer player roles based on on-field actions relating to shooting, passing, possession, and defending statistics to identify players based on their on-field actions and playstyle instead of their position
+
+* Performed clustering to identify the different types of play styles for different groups of players, using the cluster centroids to define each cluster with a characteristic name. (Ex. Ball-playing defenders, Midfield destroyers, …)
+
+* Used cosine similarity to identify undervalued players for smaller teams who compare favorably to elite players playing for established teams in Europe indicating a potential for growth when playing in a more dominant team
+
+
+
+## Programming Languages
+
+* `R`
+
+* `python`
+
+* `SQL`
+
+* `SAS`
+
+* `java`
+
+* `scala`
+
+
+## Certifications and Awards
+
+### Academic Excellence in Statistics
+
+Awarded for Highest GPA in Statistics Major 
+
+June 2025
+
+
+### National Statistics Honarary Society Member
+
+[Mu Sigma Rho](https://www.stat.purdue.edu/msr/)
+
+June 2024
+
+
+### SAS Certified Specialist: Base Programming Specialist Using SAS 9.4
+
+[SAS Certification](https://www.credly.com/badges/26f6008f-41a2-4d28-85b5-aa8d65836993?source=linked_in_profile)
+
+March 2022
+
