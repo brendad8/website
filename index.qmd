@@ -1,19 +1,20 @@
 ---
-title: "About Me"
+title: "Brendan Callender"
 about:
   id: me
-  template: broadside
-  image: img/profile.png
+  template: jolla
+  image: img/profile.jpg
 ---
+
 
 :::{#me}
 
-## Goals
 
 ## Education
 
-## Experience
+**California Polytechnic State University, San Luis Obispo**
+
+M.S. Statistics, Minor in Data Science
+
 
 :::
-
-Thanks for checking out my web site!
