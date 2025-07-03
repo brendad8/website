@@ -18,7 +18,7 @@ title: "Porfolio"
 
 \   \   [Design and Analysis of Experiments](doe.qmd)
 
-\   \   Linear Regression
+\   \   [Linear Regression](lreg.qmd)
 
 \   \   Survival Analysis
 

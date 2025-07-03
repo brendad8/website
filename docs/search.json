@@ -1,52 +1,24 @@
 [
   {
-    "objectID": "efl_proj.html",
-    "href": "efl_proj.html",
-    "title": "European Football Leagues Project",
+    "objectID": "lreg.html",
+    "href": "lreg.html",
+    "title": "Linear Regression",
     "section": "",
-    "text": "For this project, I work with 2021-2022 season data for the top 5 European football leagues. The data was acquired from FBref and spans Passing, Shooting, Defense, Shot Creating Actions, and Possession statistics.\nThe goal of this project was to model professional footballers playstyles using their recorded, on-field actions, rather than just their positions. This project would aid with team building by being able to find replacement players who can fill the same role as the player they replace. Additionally, It can identify undervalued players who play valuable roles for their team.\nFor this project I used python.\nGithub Repository\nPresentation"
+    "text": "For this project, we used linear regression to model housing prices in San Luis Obsipo, California. We collected created a dataset to analyze by randomly selecting data from Zillow ourselves, choosing from data from properties sold in San Luis Obispo (SLO), California in a 90-day time span from February 2022 through April 2022. We collected variables such as sold price, square footage, number of beds, baths, and parking spaces, the year the house was built, lot size, home type, and whether or not they had a pool, cooling, or heating on each property in our data set.\nThis project includes exploratory data analysis, transformations, and model building techniques to find a model which best fits the data. Additionally, we performed statistical inference and model validation to answer key research questions and assess the overall model fit. This work was done in collaboration with Martin Hsu and Rachel Roggenkemper.\nThis work was done using R.\nFinal Report"
   },
   {
-    "objectID": "projects.html",
-    "href": "projects.html",
-    "title": "Porfolio",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Brendan Callender",
     "section": "",
-    "text": "WORK IN PROGRESS"
+    "text": "California Polytechnic State University, San Luis Obispo\nM.S. Statistics, Minor in Data Science"
   },
   {
-    "objectID": "projects.html#data-science-projects",
-    "href": "projects.html#data-science-projects",
-    "title": "Porfolio",
-    "section": "Data Science Projects",
-    "text": "Data Science Projects\n    Thesis\n    European Football Leagues Project\n    Step Counting Project\n    Detecting Heart Disease and Diabetes Project"
-  },
-  {
-    "objectID": "projects.html#statistics-projects",
-    "href": "projects.html#statistics-projects",
-    "title": "Porfolio",
-    "section": "Statistics Projects",
-    "text": "Statistics Projects\n    Design and Analysis of Experiments\n    Linear Regression\n    Survival Analysis\n    Multi-level and Mixed Modeling"
-  },
-  {
-    "objectID": "doe.html",
-    "href": "doe.html",
-    "title": "Design and Analysis of Experiments",
+    "objectID": "hd_diab.html",
+    "href": "hd_diab.html",
+    "title": "Detecting Heart Disease and Diabetes Project",
     "section": "",
-    "text": "For this project, we developed an experimental design, collected data, and performed an analysis testing whether differences in the type of water used and brewing time cause differences in the pH of black tea. Our experimental design was a completely randomized design with a two-way analysis of variance (ANOVA) used to analyze the data. This experiment was conducted in collaboration with Brandon Kim and Ken Xie.\nWhile this analysis was done early in our respective college careers, and we have long since grown in our ability to write technical reports, it reinforces the important factors that go into designing an experiment and when statisticians can draw cause and effect conclusions. Looking back, running an experiment with friends was also really fun.\nThe data was analyzed using jmp.\nFinal Report"
-  },
-  {
-    "objectID": "step_count.html",
-    "href": "step_count.html",
-    "title": "Step Counting Project",
-    "section": "",
-    "text": "For this project, we used activity data collected, and labeled by the CalPoly Kinesiology Department to develop a new step counting algorithm. We began by evaluating an existing algorithm developed by the UK Biobank and developed a modified algorithm by leveraging the labeled categories in our dataset that were not included in the UK Biobank data.\nThis project was done as part of the Data Science Capstone for Cal Poly SLO and was completed under the guidance of Dr. Hunter Glanz, Dr. Jonathan Ventura, and Dr. Sarah Keadle and in collaboration with Martin Hsu, Kirina Sirohi, Jadyn Ellis, and Paige Dolan.\nThis project was done using both python and R.\nFinal Report\nPresentation"
-  },
-  {
-    "objectID": "thesis.html",
-    "href": "thesis.html",
-    "title": "Thesis",
-    "section": "",
-    "text": "For my thesis, I contributed two new methods to the tidyclust package in R. The tidyclust package exists as a part of the tidyverse collection of packages to unify implementations for unsupervised learning methods under a common interface that is user-friendly and follows design principles from the tidyverse. The two methods I added were density-based clustering using the DBSCAN algorithm and model-based clustering using Gaussian mixture models. For this work, I had to research each respective method and write code to bring each method into tidyclust, justifying my design choices along the way, which you can read more about in my paper or see in my presentation!\nThesis Paper - Density-Based and Model-Based Clustering with tidyclust in R\nThesis Code - tidyclust Package\nThesis Presentation"
+    "text": "The goal of this project was to develop predictive models that can be used to detect diagnoses for diabetes and heart disease in patients This was a mock data science project with the American College of Cardiology (ACC) as the client. The ACC is an organization dedicated to improving cardiovascular health by providing healthcare professionals with cutting-edge tools and resources to enhance patient care. While developing our models, we made a constant effort to build models which supported equal outcomes for both male and female patients as there can often be differences in symptoms that lead to unequal outcomes. This work was completed in collaboration with Rachel Roggenkemper and Jacob Perez.\nThis project was done using R and the tidymodels package.\nProposal\nPresentation"
   },
   {
     "objectID": "resume.html",
@@ -91,17 +63,52 @@
     "text": "Certifications and Awards\n\nAcademic Excellence in Statistics\nAwarded for Highest GPA in Statistics Major\nJune 2025\n\n\nNational Statistics Honarary Society Member\nMu Sigma Rho\nJune 2024\n\n\nSAS Certified Specialist: Base Programming Specialist Using SAS 9.4\nSAS Certification\nMarch 2022"
   },
   {
-    "objectID": "hd_diab.html",
-    "href": "hd_diab.html",
-    "title": "Detecting Heart Disease and Diabetes Project",
+    "objectID": "thesis.html",
+    "href": "thesis.html",
+    "title": "Thesis",
     "section": "",
-    "text": "The goal of this project was to develop predictive models that can be used to detect diagnoses for diabetes and heart disease in patients This was a mock data science project with the American College of Cardiology (ACC) as the client. The ACC is an organization dedicated to improving cardiovascular health by providing healthcare professionals with cutting-edge tools and resources to enhance patient care. While developing our models, we made a constant effort to build models which supported equal outcomes for both male and female patients as there can often be differences in symptoms that lead to unequal outcomes. This work was completed in collaboration with Rachel Roggenkemper and Jacob Perez.\nThis project was done using R and the tidymodels package.\nProposal\nPresentation"
+    "text": "For my thesis, I contributed two new methods to the tidyclust package in R. The tidyclust package exists as a part of the tidyverse collection of packages to unify implementations for unsupervised learning methods under a common interface that is user-friendly and follows design principles from the tidyverse. The two methods I added were density-based clustering using the DBSCAN algorithm and model-based clustering using Gaussian mixture models. For this work, I had to research each respective method and write code to bring each method into tidyclust, justifying my design choices along the way, which you can read more about in my paper or see in my presentation!\nThesis Paper - Density-Based and Model-Based Clustering with tidyclust in R\nThesis Code - tidyclust Package\nThesis Presentation"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Brendan Callender",
+    "objectID": "step_count.html",
+    "href": "step_count.html",
+    "title": "Step Counting Project",
     "section": "",
-    "text": "California Polytechnic State University, San Luis Obispo\nM.S. Statistics, Minor in Data Science"
+    "text": "For this project, we used activity data collected, and labeled by the CalPoly Kinesiology Department to develop a new step counting algorithm. We began by evaluating an existing algorithm developed by the UK Biobank and developed a modified algorithm by leveraging the labeled categories in our dataset that were not included in the UK Biobank data.\nThis project was done as part of the Data Science Capstone for Cal Poly SLO and was completed under the guidance of Dr. Hunter Glanz, Dr. Jonathan Ventura, and Dr. Sarah Keadle and in collaboration with Martin Hsu, Kirina Sirohi, Jadyn Ellis, and Paige Dolan.\nThis project was done using both python and R.\nFinal Report\nPresentation"
+  },
+  {
+    "objectID": "doe.html",
+    "href": "doe.html",
+    "title": "Design and Analysis of Experiments",
+    "section": "",
+    "text": "For this project, we developed an experimental design, collected data, and performed an analysis testing whether differences in the type of water used and brewing time cause differences in the pH of black tea. Our experimental design was a completely randomized design with a two-way analysis of variance (ANOVA) used to analyze the data. This experiment was conducted in collaboration with Brandon Kim and Ken Xie.\nWhile this analysis was done early in our respective college careers, and we have long since grown in our ability to write technical reports, it reinforces the important factors that go into designing an experiment and when statisticians can draw cause and effect conclusions. Looking back, running an experiment with friends was also really fun.\nThe data was analyzed using jmp.\nFinal Report"
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Porfolio",
+    "section": "",
+    "text": "WORK IN PROGRESS"
+  },
+  {
+    "objectID": "projects.html#data-science-projects",
+    "href": "projects.html#data-science-projects",
+    "title": "Porfolio",
+    "section": "Data Science Projects",
+    "text": "Data Science Projects\n    Thesis\n    European Football Leagues Project\n    Step Counting Project\n    Detecting Heart Disease and Diabetes Project"
+  },
+  {
+    "objectID": "projects.html#statistics-projects",
+    "href": "projects.html#statistics-projects",
+    "title": "Porfolio",
+    "section": "Statistics Projects",
+    "text": "Statistics Projects\n    Design and Analysis of Experiments\n    Linear Regression\n    Survival Analysis\n    Multi-level and Mixed Modeling"
+  },
+  {
+    "objectID": "efl_proj.html",
+    "href": "efl_proj.html",
+    "title": "European Football Leagues Project",
+    "section": "",
+    "text": "For this project, I work with 2021-2022 season data for the top 5 European football leagues. The data was acquired from FBref and spans Passing, Shooting, Defense, Shot Creating Actions, and Possession statistics.\nThe goal of this project was to model professional footballers playstyles using their recorded, on-field actions, rather than just their positions. This project would aid with team building by being able to find replacement players who can fill the same role as the player they replace. Additionally, It can identify undervalued players who play valuable roles for their team.\nFor this project I used python.\nGithub Repository\nPresentation"
   }
 ]
