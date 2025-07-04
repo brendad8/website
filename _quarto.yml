@@ -26,9 +26,9 @@ format:
   html:
     theme: 
       light: cosmo
-      dark: darkly
+      dark: cyborg
     toc: true
 
 editor: source
 
-# morph, cosmo. spacelab
+# morph, cosmo. spacelab darkly
