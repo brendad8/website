@@ -26,7 +26,7 @@ format:
   html:
     theme: 
       light: cosmo
-      dark: cyborg
+      dark: solar
     toc: true
 
 editor: source
