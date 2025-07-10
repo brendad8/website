@@ -2,8 +2,6 @@
 title: "Porfolio"
 ---
 
-**WORK IN PROGRESS**
-
 ## Data Science Projects
 
 \   \   [Thesis](thesis.qmd)
