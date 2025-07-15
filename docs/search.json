@@ -53,7 +53,7 @@
     "href": "resume.html#experience",
     "title": "Resume",
     "section": "Experience",
-    "text": "Experience\n\nInari Medical (Now Stryker)\nJune 2024 - June 2025\nStatistical Programming Intern / Consultant\n\nLed the development of a custom process for creating analysis datasets in R, with seamless transfer capabilities to SAS, supporting the potential use of R for production programming over SAS\nDeveloped a custom QC function in R to standardize dataset validation across the team, incorporating automated checks and custom functionalities to make QC checks more robust\nExplored the use of a generative AI for common statistical programming tasks to assess its effectiveness, limitations, and integration potential for future projects\nSupported company clinical research with creation of analysis datasets, tables, listings, and figures using both R and SAS\n\n\n\nFirst American Title Insurance Company\nJune 2022 - August 2022\nData & Analytics Intern\n\nCreated reusable SQL procedures summarizing housing data into monthly trends tracking the number of houses for sale, houses sold, new listings, pending sales, and more\nBuilt an interactive, auto-refreshing dashboard to visualize housing trends, enabling the real-time updates for trends in the housing market\nCleaned, merged, and validated malformed client and company data across many platforms (SQL Server, Snowflake, Excel), to answer company and client information needs"
+    "text": "Experience\n\nInari Medical (Now Stryker)\nJune 2024 - June 2025\nStatistical Programming Intern / Consultant\n\nLed the development of a custom process for creating analysis datasets in R, with seamless transfer capabilities to SAS, supporting the potential use of R for production programming over SAS\nDeveloped a custom QC function in R to standardize dataset validation across the team, incorporating automated checks and custom functionalities to make QC checks more robust\nExplored the use of a generative AI for common statistical programming tasks to assess its effectiveness, limitations, and integration potential for future projects\nBuilt analysis datasets in SQL using real-world claims data (RWD), strengthening clinical evidence used to demonstrate device effectiveness\n\n\n\nFirst American Title Insurance Company\nJune 2022 - August 2022\nData & Analytics Intern\n\nCreated reusable SQL procedures summarizing housing data into monthly trends tracking the number of houses for sale, houses sold, new listings, pending sales, and more\nBuilt an interactive, auto-refreshing dashboard to visualize housing trends, enabling the real-time updates for trends in the housing market\nCleaned, merged, and validated malformed client and company data across many platforms (SQL Server, Snowflake, Excel), to answer company and client information needs"
   },
   {
     "objectID": "resume.html#projects",
@@ -264,5 +264,19 @@
     "title": "Classifying Risky Mortgage Applicants",
     "section": "",
     "text": "For this project, we were asked to pose as data scientists working in the mortages division of a bank. We were tasked with building a predictive model to determine whether a mortgage applicant will be able to repay their loan. The data for the project can be found in the Kaggle competition here. This work was completed in collaboration with Martin Hsu, Joshua Blank, Alex Arrieta, and Sophia Chung.\nFor this project we tested models using logistic regression, support vector machines (SVM), and linear discriminant analysis (LDA). In this project we were asked to implement cross validation and model metrics by hand. For this task, we considered metrics such as ROC-AUC, Accuracy, F1-Score, and more. In the data we encounter a major class imbalance with approximately only 10% of creditors being unable to repay their loans. To account for this, we used oversampling when training our models to facilitate more balanced predictions. In this project, we were also tasked with considering fairness and selecting a model that does not discriminate according to age, gender, race, and marital status which is illegal under the Fair Housing and Equal Credit Opportunity Acts.\nFor more details about the project, see the description file below.\nThis project was done using python.\nProject Description\nCode\nProject Proposal\nFinal Report\nFinal Presentation"
+  },
+  {
+    "objectID": "resume.html#technical-skills",
+    "href": "resume.html#technical-skills",
+    "title": "Resume",
+    "section": "Technical Skills",
+    "text": "Technical Skills\nSkills:\nStatistics, Statistical Inference, Data Science, Supervised Learning, Unsupervised Learning, Experimental Design\nProgramming Languages / Tools:\nR, Python, SQL, SAS, Java, Scala, Bash, Git, Excel\nLibraries:\nQuarto, tidyverse, tidymodels, ggplot, Jupyter, pandas, numpy, sklearn, plotly\nSoft Skills:\nStrong Communicator, Data Storyteller, Quick Learner, Adaptable, People-Person"
+  },
+  {
+    "objectID": "resume.html#skills",
+    "href": "resume.html#skills",
+    "title": "Resume",
+    "section": "Skills",
+    "text": "Skills\nTechnical Skills:\nStatistics, Statistical Inference, Data Science, Supervised Learning, Unsupervised Learning, Experimental Design\nProgramming Languages / Tools:\nR, Python, SQL, SAS, Java, Scala, Bash, Git, Excel\nLibraries:\nQuarto, tidyverse, tidymodels, ggplot, Jupyter, pandas, numpy, sklearn, plotly\nSoft Skills:\nStrong Communicator, Data Storyteller, Quick Learner, Adaptable, People-Person"
   }
 ]
