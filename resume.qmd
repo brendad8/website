@@ -10,13 +10,11 @@ title: "Resume"
 
 **Graduated: June 2025**
 
-\ \ \ \ \ GPA: 3.98 / 4.0
-
 ## Skills
 
 **Technical Skills:**
 
-Statistics, Statistical Inference, Data Science, Supervised Learning, Unsupervised Learning, Experimental Design
+Statistics, Statistical Inference, Data Science, Supervised Learning, Unsupervised Learning, Experimental Design, Data Visualization
 
 **Programming Languages / Tools:**
 
@@ -28,7 +26,7 @@ Statistics, Statistical Inference, Data Science, Supervised Learning, Unsupervis
 
 **Soft Skills:**
 
-Strong Communicator, Data Storyteller, Quick Learner, Adaptable, People-Person
+Strong Communicator, Data Storyteller, Quick Learner, Adaptable
 
 
 
