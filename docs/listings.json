@@ -1,16 +1,16 @@
 [
   {
-    "listing": "/portfolio.html",
+    "listing": "/portfolio/index.html",
     "items": [
-      "/projects/thesis.html",
-      "/projects/efl_proj.html",
-      "/projects/loans.html",
-      "/projects/step_count.html",
-      "/projects/hd_diab.html",
-      "/projects/doe.html",
-      "/projects/lreg.html",
-      "/projects/surv.html",
-      "/projects/mmm.html"
+      "/portfolio/thesis/index.html",
+      "/portfolio/efl_proj/index.html",
+      "/portfolio/loans/index.html",
+      "/portfolio/step_count/index.html",
+      "/portfolio/hd_diab/index.html",
+      "/portfolio/doe/index.html",
+      "/portfolio/lreg/index.html",
+      "/portfolio/surv/index.html",
+      "/portfolio/mmm/index.html"
     ]
   }
 ]

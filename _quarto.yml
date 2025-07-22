@@ -8,9 +8,9 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: resume.qmd
+      - href: resume/index.qmd
         text: Resume
-      - href: portfolio.qmd
+      - href: portfolio/index.qmd
         text: Portfolio
     tools:
       - icon: linkedin
@@ -24,9 +24,9 @@ website:
 
 format:
   html:
-    theme: 
+    theme:
       light: cosmo
-      dark: solar
+      dark:  solar
     toc: true
 
 editor: source

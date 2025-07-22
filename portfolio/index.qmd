@@ -1,0 +1,23 @@
+---
+title: "Portfolio"
+format: html
+listing: 
+  contents:  # all Quarto docs in the `posts` directory will be included on your listing page
+    - thesis/index.qmd
+    - efl_proj/index.qmd
+    - loans/index.qmd
+    - step_count/index.qmd
+    - hd_diab/index.qmd
+    - doe/index.qmd
+    - lreg/index.qmd
+    - surv/index.qmd
+    - mmm/index.qmd
+    
+  type: default # or `default` or `table`; each type has its own set of yaml options to include
+  sort: false
+  categories: true # allows you to sort posts by assigned categories 
+
+    
+---
+
+
