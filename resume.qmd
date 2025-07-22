@@ -64,7 +64,7 @@ Data & Analytics Intern
 
 
 
-## [Projects](projects.qmd)
+## [Projects](portfolio.qmd)
 
 ### [Thesis](projects/thesis.qmd)
 

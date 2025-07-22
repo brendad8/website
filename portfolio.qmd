@@ -2,9 +2,20 @@
 title: "Portfolio"
 format: html
 listing: 
-  contents: projects # all Quarto docs in the `posts` directory will be included on your listing page
+  contents:  # all Quarto docs in the `posts` directory will be included on your listing page
+    - projects/thesis.qmd
+    - projects/efl_proj.qmd
+    - projects/loans.qmd
+    - projects/step_count.qmd
+    - projects/hd_diab.qmd
+    - projects/doe.qmd
+    - projects/lreg.qmd
+    - projects/surv.qmd
+    - projects/mmm.qmd
+    
+    
   type: grid # or `default` or `table`; each type has its own set of yaml options to include
-  # sort: "date desc" 
+  sort: false
   categories: true # allows you to sort posts by assigned categories 
 
     
