@@ -51,8 +51,6 @@ $enable-rounded: false !default;
 $body-bg: $gray-950;
 $body-color: $white !default;
 $link-color: #2a76dd;
-$code-block-bg: $gray-925;
-
 
 // Fonts
 
@@ -109,6 +107,9 @@ body {
     line-height: 8px;
   }
 }
+
+/*-- scss:rules --*/
+
 
 
 // quarto-scss-analysis-annotation { "origin": null }

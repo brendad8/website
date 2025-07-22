@@ -10,7 +10,7 @@ For this project we tested models using **logistic regression**, **support vecto
 
 For more details about the project, see the description file below.
 
-This project was done using `python`.
+This project was done using **python**.
 
 [Project Description](loans_proj_det.pdf)
 

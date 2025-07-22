@@ -10,7 +10,7 @@ The goal of this project was to model professional footballer's play styles usin
 
 I was able to identify different play styles using **clustering** and compare and contrast the different play styles by looking at the different **cluster centroids**. I also made a tool to find the most similar players given a player player name as the input. This tool used **cosine similarity** to return the top 10 most similar players for a given player. This was used to identify lesser-known players who compare favorable to established, elite players.
 
-For this project I used `python`.
+For this project I used **python**.
 
 [Github Repository](https://fbref.com/en/)
 
