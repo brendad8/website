@@ -12,9 +12,9 @@ about:
 
 :::{.text-center}
 
-**California Polytechnic State University, San Luis Obispo**
+**Data Scientist and Statistician**
 
-M.S. Statistics, Minor in Data Science
+M.S. Statistics
 
 
 :::
