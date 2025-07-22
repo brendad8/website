@@ -81,7 +81,7 @@ Density-Based and Model-Based Clustering with `tidyclust` in `R`
 * Implemented a modification to the DBSCAN algorithm to make the algorithm deterministic and return the same cluster assignments regardless of the order the data was processed
 
 
-### European Football Leagues Player Profiles Project
+### [European Football Leagues Player Profiles Project](projects/efl_proj.qmd)
 
 February 2023
 
