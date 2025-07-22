@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Multi-level and Mixed Modeling – Contents</title>
+<title>Portfolio – Contents</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -68,7 +70,65 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -98,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Resume</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./projects.html"> 
+    <a class="nav-link active" href="./portfolio.html" aria-current="page"> 
 <span class="menu-text">Portfolio</span></a>
   </li>  
 </ul>
@@ -116,15 +176,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(9)</span></div><div class="category" data-category="Data Science">Data Science <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Statistics">Statistics <span class="quarto-category-count">(4)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Multi-level and Mixed Modeling</h1>
+<h1 class="title">Portfolio</h1>
 </div>
 
 
@@ -141,15 +201,260 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In this project, using a <strong>linear mixed-effects model</strong> to answer what factors are most associated with higher or lower point totals in the English Premier League (EPL). We also examine whether spending more money on players is associated with achieving higher point totals. This work was done in collaboration with Dylan Li and Liam Quach.</p>
-<p>This project was done using <code>R</code>.</p>
-<p><a href="https://github.com/brendad8/Mixed-Modeling-Premier-League">Code</a></p>
-<p><a href="documents/mmm_report.pdf">Final Report</a></p>
-<p><a href="documents/mmm_pres.pdf">Final Presentation</a></p>
 
 
 
-</main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="Data Science" data-listing-file-modified-sort="1753145978773" data-listing-reading-time-sort="2" data-listing-word-count-sort="209">
+<a href="./projects/loans.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/loans.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Classifying Risky Mortgage Applicants
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Data Science'); return false;">
+Data Science
+</div>
+</div>
+<div class="card-text listing-description">
+For this project, we were asked to pose as data scientists working in the mortages division of a bank. We were tasked with building a <strong>predictive model</strong> to determine <strong>whether a…</strong>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="Statistics" data-listing-file-modified-sort="1753145976700" data-listing-reading-time-sort="1" data-listing-word-count-sort="128">
+<a href="./projects/doe.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/doe.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Design and Analysis of Experiments
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+</div>
+<div class="card-text listing-description">
+For this project, we <strong>developed an experimental design</strong>, <strong>collected data</strong>, and <strong>performed an analysis</strong> testing whether differences in the type of water used and brewing time cause…<strong></strong><strong></strong>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="Data Science" data-listing-file-modified-sort="1753146049525" data-listing-reading-time-sort="1" data-listing-word-count-sort="124">
+<a href="./projects/hd_diab.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/hd_diab.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Detecting Heart Disease and Diabetes Project
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Data Science'); return false;">
+Data Science
+</div>
+</div>
+<div class="card-text listing-description">
+The goal of this project was to develop <strong>predictive models</strong> that can be used to detect <strong>diagnoses for diabetes and heart disease</strong> in patients This was a mock data science…
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="Data Science" data-listing-file-modified-sort="1753145981570" data-listing-reading-time-sort="1" data-listing-word-count-sort="172">
+<a href="./projects/efl_proj.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/efl.jpeg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+European Football Leagues Project
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Data Science'); return false;">
+Data Science
+</div>
+</div>
+<div class="card-text listing-description">
+For this project, I work with 2021-2022 season data for the top 5 European football leagues. The data was acquired from FBref and spans passing, shooting, defense, shot…
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="Statistics" data-listing-file-modified-sort="1753146096019" data-listing-reading-time-sort="1" data-listing-word-count-sort="146">
+<a href="./projects/lreg.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/lreg.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Linear Regression
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+</div>
+<div class="card-text listing-description">
+For this project, we used <strong>linear regression</strong> to model <strong>housing prices in San Luis Obsipo</strong>, California (SLO). We created a dataset by randomly selecting data from Zillow ourselve…
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="5" data-categories="Statistics" data-listing-file-modified-sort="1753146221113" data-listing-reading-time-sort="1" data-listing-word-count-sort="62">
+<a href="./projects/mmm.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/mmm.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Multi-level and Mixed Modeling
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+</div>
+<div class="card-text listing-description">
+In this project, using a <strong>linear mixed-effects model</strong> to answer what factors are most associated with higher or lower point totals in the English Premier League (EPL). We also…
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="6" data-categories="Data Science" data-listing-file-modified-sort="1753146401832" data-listing-reading-time-sort="1" data-listing-word-count-sort="110">
+<a href="./projects/step_count.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/step.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Step Counting Project
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Data Science'); return false;">
+Data Science
+</div>
+</div>
+<div class="card-text listing-description">
+For this project, we used activity data collected, and labeled by the CalPoly Kinesiology Department to develop a new <strong>step counting</strong> algorithm using <strong>machine learning algorithms</strong>…
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="7" data-categories="Statistics" data-listing-file-modified-sort="1753146672639" data-listing-reading-time-sort="1" data-listing-word-count-sort="92">
+<a href="./projects/surv.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/surv.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Survival Analysis
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+</div>
+<div class="card-text listing-description">
+For this project we perform <strong>survival analysis</strong> techniques on data from a balance test that was conducted by the US Center for Disease Control (CDC). More specifically, the…<strong></strong><strong></strong><strong></strong>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="8" data-categories="Data Science" data-listing-file-modified-sort="1753145983931" data-listing-reading-time-sort="1" data-listing-word-count-sort="123">
+<a href="./projects/thesis.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./img/tidyclust.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Thesis
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Data Science'); return false;">
+Data Science
+</div>
+</div>
+<div class="card-text listing-description">
+For my thesis, I contributed two new methods to the <code>tidyclust</code> package in <code>R</code>. The <code>tidyclust</code> package exists as a part of the <code>tidyverse</code> collection of packages to unify…<strong></strong><code></code><strong></strong><strong></strong><strong></strong><strong></strong><code></code>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

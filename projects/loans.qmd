@@ -1,5 +1,7 @@
 ---
 title: "Classifying Risky Mortgage Applicants"
+categories: [Data Science]
+image: ../img/loans.png
 ---
 
 For this project, we were asked to pose as data scientists working in the mortages division of a bank. We were tasked with building a **predictive model** to determine **whether a mortgage applicant will be able to repay their loan**. The data for the project can be found in the Kaggle competition [here](https://www.kaggle.com/c/home-credit-default-risk/). This work was completed in collaboration with Martin Hsu, Joshua Blank, Alex Arrieta, and Sophia Chung.
@@ -10,12 +12,12 @@ For more details about the project, see the description file below.
 
 This project was done using `python`.
 
-[Project Description](documents/loans_proj_det.pdf)
+[Project Description](../documents/loans_proj_det.pdf)
 
-[Code](documents/loans_code.ipynb)
+[Code](../documents/loans_code.ipynb)
 
-[Project Proposal](documents/loans_prop.pdf)
+[Project Proposal](../documents/loans_prop.pdf)
 
-[Final Report](documents/loans_report.pdf)
+[Final Report](../documents/loans_report.pdf)
 
-[Final Presentation](documents/loans_pres.pdf)
+[Final Presentation](../documents/loans_pres.pdf)

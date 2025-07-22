@@ -1,5 +1,7 @@
 ---
 title: "Survival Analysis"
+categories: [Statistics]
+image: ../img/surv.png
 ---
 
 
@@ -7,4 +9,4 @@ For this project we perform **survival analysis** techniques on data from a bala
 
 This project was done using `R`.
 
-[Final Report](documents/surv_report.pdf)
+[Final Report](../documents/surv_report.pdf)

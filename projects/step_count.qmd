@@ -1,5 +1,7 @@
 ---
 title: "Step Counting Project"
+categories: [Data Science]
+image: ../img/step.png
 ---
 
 For this project, we used activity data collected, and labeled by the CalPoly Kinesiology Department to develop a new **step counting** algorithm using **machine learning algorithms**. We began by evaluating an existing algorithm developed by the UK Biobank and developed a modified algorithm by leveraging the labeled categories in our dataset that were not included in the UK Biobank data.
@@ -8,6 +10,6 @@ This project was done as part of the Data Science Capstone for Cal Poly SLO and 
 
 This project was done using `python`.
 
-[Final Report](documents/step_count_report.pdf)
+[Final Report](../documents/step_count_report.pdf)
 
-[Presentation](documestep_count_pres.pdf)
+[Presentation](../documents/step_count_pres.pdf)

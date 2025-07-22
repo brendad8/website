@@ -1,5 +1,7 @@
 ---
 title: "European Football Leagues Project"
+categories: [Data Science]
+image: ../img/efl.jpeg
 ---
 
 For this project, I work with 2021-2022 season data for the top 5 European football leagues. The data was acquired from [FBref](https://fbref.com/en/) and spans passing, shooting, defense, shot creating actions, and possession statistics.
@@ -12,5 +14,5 @@ For this project I used `python`.
 
 [Github Repository](https://fbref.com/en/)
 
-[Presentation](documents/efl_pres.pdf)
+[Presentation](../documents/efl_pres.pdf)
 

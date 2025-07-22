@@ -1,5 +1,7 @@
 ---
 title: "Detecting Heart Disease and Diabetes Project"
+categories: [Data Science]
+image: ../img/hd_diab.png
 ---
 
 The goal of this project was to develop **predictive models** that can be used to detect **diagnoses for diabetes and heart disease** in patients This was a mock data science project with the American College of Cardiology (ACC) as the client. The ACC is an organization dedicated to improving cardiovascular health by providing healthcare professionals with cutting-edge tools and resources to enhance patient care. 
@@ -8,6 +10,6 @@ While developing our models, we made a constant effort to build models which sup
 
 This project was done using `R` and the `tidymodels` package.
 
-[Proposal](documents/hd_diab_prop.pdf)
+[Proposal](../documents/hd_diab_prop.pdf)
 
-[Presentation](documents/hd_diab_pres.pdf)
+[Presentation](../documents/hd_diab_pres.pdf)

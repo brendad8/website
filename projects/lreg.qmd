@@ -1,5 +1,7 @@
 ---
 title: "Linear Regression"
+categories: [Statistics]
+image: ../img/lreg.png
 ---
 
 For this project, we used **linear regression** to model **housing prices in San Luis Obsipo**, California (SLO). We created a dataset by randomly selecting data from [Zillow](https://www.zillow.com/) ourselves, choosing from properties sold in SLO in a 90-day time span from February 2022 through April 2022. We collected variables such as sold price, square footage, number of beds, baths, and parking spaces, the year the house was built, lot size, home type, and whether or not they had a pool, cooling, or heating on each property in our data set. 
@@ -9,4 +11,4 @@ This project includes **exploratory data analysis**, **transformations**, and **
 This work was done using `R`.
 
 
-[Final Report](documents/lreg_report.pdf)
+[Final Report](../documents/lreg_report.pdf)
