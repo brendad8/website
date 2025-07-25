@@ -1,0 +1,19 @@
+---
+title: "Generalized Linear Models"
+categories: [Statistics]
+image: glm.jpg
+---
+
+A large do-it-yourself (DIY) store in a densely populated suburb has collected data on the number of customers who visited their store during a two-week period from 110 different nearby neighborhoods. The goal of the analysis is to construct a model which best models how many customers will visit the DIY store based on the predictors collected in the data. This model will then be used to provide predicted counts for the number of customers that will visit a store based on different values for the predictors in the model.
+
+For this analysis I used a **Generalized-Linear Model** to model the number of customers who visited the store with an **offset** adjusting for the size of each neighborhood. The entire model fitting procedure is described in the Project Log with the final model described in the Final Report. Lastly, all code used for this analysis can be found in the Project Code link.
+
+This analysis was done using **R**.
+
+[Final Report](glm.pdf)
+
+
+[Project Log](Project_log.pdf)
+
+
+[Project Code](store_analysis_final.qmd)

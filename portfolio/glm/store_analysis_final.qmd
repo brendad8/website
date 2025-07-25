@@ -1,0 +1,342 @@
+---
+title: "Store Analysis"
+author: "Brendan Callender"
+format: html
+editor: visual
+---
+
+## Setup
+
+```{r}
+library(effects)
+library(tidyverse)
+library(pivottabler)
+library(car)
+library(performance)
+library(fitdistrplus) #fitdist
+library(MASS) #glm.nb
+library(pscl) #odTest, zeroinfl, hurdle
+```
+
+### Read in Data
+
+```{r}
+here::here()
+Store <- read_csv(here::here("portfolio", "glm", "Store.csv"))
+Store$logunits <- log(Store$units)
+```
+
+## Initial Model
+
+```{r}
+m1 <- glm(customers ~ income + age + compdist + storedist, family = poisson(link = "log"), offset = logunits, data = Store)
+summary(m1)
+```
+
+### Goodness of Fit
+
+Strong evidence that poisson loglinear model with all main effects does not adequately fit the data...
+
+```{r}
+1- pchisq(462.34, 110-5) # deviance gof
+1- pchisq(sum(residuals(m1, type = "pearson")^2), 110-5) # pearson gof
+```
+
+### Testing Overdispersion
+
+We have strong evidence that the poisson loglinear model with all main effects has overdispersion so we will have to find a solution for that
+
+```{r}
+check_overdispersion(m1)
+```
+
+## Addressing Overdispersion
+
+### NB2 Model
+
+```{r}
+m2 <- glm.nb(customers ~ income + age + compdist + storedist + offset(logunits), data = Store)
+summary(m2)
+```
+
+### QL (Var = mu)
+
+```{r}
+m3 <- glm(customers ~ income + age + compdist + storedist, family = quasi(link = "log", var = "mu"), offset = logunits, data = Store)
+summary(m3)
+```
+
+### QL (Var = mu\^2)
+
+```{r}
+m4 <- glm(customers ~ income + age + compdist + storedist, family = quasi(link = "log", var = "mu^2"), offset = logunits, data = Store)
+summary(m4)
+```
+
+### Comparison of Model $X^2$ Statistics
+
+```{r}
+x_squared <- c(sum(residuals(m1, type = "pearson")^2),
+  sum(residuals(m2, type = "pearson")^2),
+  sum(residuals(m3, type = "pearson")^2),
+  sum(residuals(m4, type = "pearson")^2))
+  
+names(x_squared) <- c("Poisson", "NegBin", "Quasi(mu)", "Quasi(mu^2)")
+dfs <- c(105,104,105,105)
+x_squared
+pchisq(x_squared, dfs, lower.tail = FALSE)
+```
+
+## Stepwise Model Selection for NB2 Model
+
+```{r}
+step.model.nb <- step(m2, scope = ~ .^3, k = 2, direction = "both", trace = 0)
+summary(step.model.nb)
+sum(residuals(step.model.nb, type = "pearson")^2)
+```
+
+```{r}
+ts1 <- sum(residuals(step.model.nb, type = "pearson")^2)
+ts2 <- sum(residuals(step.model.nb, type = "deviance")^2)
+df <- 104
+pchisq(ts1, df, lower.tail = FALSE)
+pchisq(ts2, df, lower.tail = FALSE)
+```
+
+### Examine Diagnostic Plots for Stepwise NB2 Model
+
+```{r}
+car::infIndexPlot(step.model.nb, vars=c("Studentized", "hat", "Cook"))
+residualPlots(step.model.nb, tests = FALSE)
+```
+
+### Examine Major Outlier
+
+```{r}
+Store[which.max(residuals(step.model.nb, type = "pearson")),]
+```
+
+## Redoing Analysis w/ Outlier Removed
+
+```{r}
+Store_sub <- Store[-11,]
+
+m1_sub <- glm(customers ~ income + age + compdist + storedist, family = poisson(link = "log"), offset = logunits, data = Store_sub)
+
+m2_sub <- glm.nb(customers ~ income + age + compdist + storedist + offset(logunits), link = "log", data = Store_sub)
+
+m3_sub <- glm(customers ~ income + age + compdist + storedist, family = quasi(link = "log", var = "mu"), offset = logunits, data = Store_sub)
+
+m4_sub <- glm(customers ~ income + age + compdist + storedist, family = quasi(link = "log", var = "mu^2"), offset = logunits, data = Store_sub)
+
+```
+
+### Comparing $X^2$ statistics with Outlier Removed
+
+```{r}
+x_squared <- c(
+    sum(residuals(m1_sub, type = "pearson")^2),
+    sum(residuals(m2_sub, type = "pearson")^2),
+    sum(residuals(m3_sub, type = "pearson")^2),
+    sum(residuals(m4_sub, type = "pearson")^2)
+  )
+names(x_squared) <- c("Poisson", "NegBin", "Quasi(mu)", "Quasi(mu^2)")
+dfs <- c(105,104,105,105)
+x_squared
+pchisq(x_squared, dfs, lower.tail = FALSE)
+```
+
+## Examining QL(Var = mu\^2) Model
+
+### QL(var = mu\^2)
+
+Looking at the plot of the residuals, it looks like this model may have underdispersion and is overestimating the variance in the data since almost all preds are within 1 sd of the actual value and all others fall within 2 sds
+
+```{r}
+summary(m4_sub)
+```
+
+```{r}
+infIndexPlot(m4_sub, vars = c("Studentized", "hat", "cook"))
+```
+
+```{r}
+#| warning: false
+residualPlot(m4_sub)
+# residualPlots(m4_sub, tests = FALSE)
+```
+
+## Continuing Analysis with NB2 Model
+
+```{r}
+step.model.nb.sub <- step(m2_sub, scope = ~ .^3, k = 2, direction = "both", trace = 0)
+summary(step.model.nb.sub)
+sum(residuals(step.model.nb.sub, type = "pearson")^2)
+```
+
+### Model VIFs
+
+```{r}
+#| warning: false
+#| message: false
+vif(step.model.nb.sub)
+```
+
+### Centering Predictors
+
+```{r}
+Store_sub <- Store_sub %>%
+  mutate(
+    cage = scale(age, center = TRUE, scale = TRUE)[,1],  
+    cincome = scale(income, center = TRUE, scale = TRUE)[,1],   
+    cstoredist = scale(storedist, center = TRUE, scale = TRUE)[,1],
+    ccompdist = scale(compdist, center = TRUE, scale = TRUE)[,1]
+  )
+```
+
+```{r}
+nb.main.cent.sub <- glm.nb(customers ~ cage + cincome + cstoredist + ccompdist + offset(logunits), link = log, data = Store_sub)
+
+step.nb.cent.sub <- step(nb.main.cent.sub, scope = ~ .^3, k = 2, direction = "both", trace = 0)
+summary(step.nb.cent.sub)
+sum(residuals(step.nb.cent.sub, type = "pearson")^2)
+```
+
+### Check VIFs again
+
+```{r}
+#| warning: false
+#| message: false
+vif(step.nb.cent.sub)
+```
+
+## Final Model Hypothesis Testing
+
+## Final Model Hypothesis Testing
+
+```{r}
+final_model <- step.nb.cent.sub
+summary(final_model)
+```
+
+### Remove Non-Significant Interaction
+
+```{r}
+final_model <- update(final_model, ~ . - cstoredist:ccompdist)
+summary(final_model)
+```
+
+### Add Age?
+
+```{r}
+m.add.age <- update(final_model, ~ . + age)
+summary(m.add.age)
+```
+
+### Add Any Interactions?
+
+```{r}
+all.int <- glm.nb(customers ~ (income + age + compdist + storedist)^2 + offset(logunits), data = Store_sub)
+anova(final_model, all.int)
+```
+
+### Add Higher Order Terms?
+
+```{r}
+all.hot <- glm.nb(customers ~ poly(cincome, 2) + poly(cage,2) + poly(ccompdist,2) + poly(cstoredist, 2) + offset(logunits), data = Store_sub)
+anova(final_model, all.hot)
+```
+
+Higher Order term for Income is close to being a significant predictor at a 5% overall significance level.
+
+```{r}
+summary(glm.nb(customers ~ poly(cincome, 2) + ccompdist + cstoredist + offset(logunits), data = Store_sub))
+```
+
+## Final Model Diagnostics
+
+```{r}
+summary(final_model)
+```
+
+```{r}
+vif(final_model)
+```
+
+### Goodness of Fit Test
+
+```{r}
+ts <- sum(residuals(final_model, type = "pearson")^2)
+pchisq(ts, 104, lower.tail = FALSE)
+# df = 109 - 5 (p includes estimate for gamma)
+```
+
+Check Expected Counts / fitted values to make sure Goodness of fit test is valid GOF test is good since no expected counts are below 1 and only 9% of counts are below 5.
+
+```{r}
+exp_counts <- final_model$fitted.values
+
+mean(exp_counts < 1)
+mean(exp_counts < 5)
+```
+
+### Leverage / Influence
+
+```{r}
+n <- 109
+p <- 5
+high_leverage_cutoff <- 3*p/n
+high_influence_cutoff <- qf(0.5, p, n-p)
+
+c(high_leverage_cutoff, high_influence_cutoff)
+```
+
+There are no highly influential observations in the data
+
+```{r}
+infIndexPlot(final_model, vars = c("hat", "cook"))
+resid_plots <- residualPlots(final_model, smooth = FALSE, tests = FALSE)
+attr(resid_plots, "dimnames")[[1]] <- c("Income (C)", "Distance to Store (C)", "Distance to Competitor (C)")
+resid_plots
+```
+
+### Examine Obs with high leverage
+
+These observations appear to be neighborhoods with high median income. Overall, these points are not influential so they will be kept in the model.
+
+```{r}
+Store_sub[c(14, 93),]
+```
+
+## Outputting Final Model Predictions
+
+```{r}
+units = Store_sub %>%
+  summarize(mean = mean(units)) %>%
+  unlist() %>% unname() %>% data.frame(units = .) %>% round(., digits = 0)
+
+cincome = Store_sub %>%
+  summarize(min = min(cincome), mean = mean(cincome), max = max(cincome)) %>%
+  unlist() %>% unname() %>% data.frame(cincome = .) %>% round(., digits = 2)
+
+ccompdist = Store_sub %>%
+  summarize(min = min(ccompdist), mean = mean(ccompdist), max = max(ccompdist)) %>%
+  unlist() %>% unname() %>% data.frame(ccompdist = .) %>% round(., digits = 2)
+
+cstoredist = Store_sub %>%
+  summarize(min = min(cstoredist), mean = mean(cstoredist), max = max(cstoredist)) %>%
+  unlist() %>% unname() %>% data.frame(cstoredist = .) %>% round(., digits = 2)
+
+pred_data <- crossing(units, cincome, ccompdist, cstoredist) %>%
+  mutate(logunits = log(units))
+```
+
+```{r}
+pred_data %>%
+  mutate(pred_count = predict(final_model, newdata = pred_data, type = "response")) %>%
+  dplyr::select(-logunits) %>%
+  mutate(pred_count = round(pred_count, digits = 3)) %>%
+  arrange(desc(pred_count)) 
+# %>%
+#   knitr::kable(format = "html")
+```

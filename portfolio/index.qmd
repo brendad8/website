@@ -9,6 +9,7 @@ listing:
     - step_count/index.qmd
     - hd_diab/index.qmd
     - doe/index.qmd
+    - glm/index.qmd
     - lreg/index.qmd
     - surv/index.qmd
     - mmm/index.qmd
