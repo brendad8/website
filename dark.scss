@@ -52,6 +52,7 @@ $body-bg: $gray-950;
 $body-color: $white !default;
 $link-color: #2a76dd;
 
+
 // Fonts
 
 // stylelint-disable-next-line value-keyword-case
@@ -70,7 +71,6 @@ $alert-border-width:            0 !default;
 // Progress bars
 
 $progress-height:               .5rem !default;
-
 
 
 /*-- scss:rules --*/
@@ -110,6 +110,9 @@ body {
 
 /*-- scss:rules --*/
 
+p code {
+  background-color: transparent
+}
 
 
 // quarto-scss-analysis-annotation { "origin": null }

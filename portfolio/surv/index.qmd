@@ -1,6 +1,6 @@
 ---
 title: "Survival Analysis"
-categories: [Statistics]
+categories: [Statistics, R]
 image: surv.png
 ---
 

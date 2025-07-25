@@ -1,6 +1,6 @@
 ---
 title: "Thesis"
-categories: [Data Science]
+categories: [Data Science, R]
 image: tidyclust.png
 html:
   monobackgroundcolor: "#151515"

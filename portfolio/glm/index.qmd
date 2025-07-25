@@ -1,6 +1,6 @@
 ---
 title: "Generalized Linear Models"
-categories: [Statistics]
+categories: [Statistics, R]
 image: glm.jpg
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Detecting Heart Disease and Diabetes Project"
-categories: [Data Science]
+categories: [Data Science, R]
 image: hd_diab.png
 ---
 

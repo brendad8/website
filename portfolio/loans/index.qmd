@@ -1,6 +1,6 @@
 ---
 title: "Classifying Risky Mortgage Applicants"
-categories: [Data Science]
+categories: [Data Science, Python]
 image: loans.png
 ---
 

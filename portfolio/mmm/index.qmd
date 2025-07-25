@@ -1,6 +1,6 @@
 ---
 title: "Multi-level and Mixed Modeling"
-categories: [Statistics]
+categories: [Statistics, R]
 image: mmm.png
 ---
 

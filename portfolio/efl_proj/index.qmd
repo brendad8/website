@@ -1,6 +1,6 @@
 ---
 title: "European Football Leagues Project"
-categories: [Data Science]
+categories: [Data Science, Python]
 image: efl.jpeg
 ---
 

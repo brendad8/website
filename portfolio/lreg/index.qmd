@@ -1,6 +1,6 @@
 ---
 title: "Linear Regression"
-categories: [Statistics]
+categories: [Statistics, R]
 image: lreg.png
 ---
 

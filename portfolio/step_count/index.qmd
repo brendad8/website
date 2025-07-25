@@ -1,6 +1,6 @@
 ---
 title: "Step Counting Project"
-categories: [Data Science]
+categories: [Data Science, Python]
 image: step.png
 ---
 
