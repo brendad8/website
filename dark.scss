@@ -52,6 +52,12 @@ $body-bg: $gray-950;
 $body-color: $white !default;
 $link-color: #2a76dd;
 
+// Code
+$code-bg: $gray-925;
+$code-color: $pink;
+
+
+
 
 // Fonts
 
@@ -108,11 +114,11 @@ body {
   }
 }
 
+
+
 /*-- scss:rules --*/
 
-p code {
-  background-color: transparent
-}
+
 
 
 // quarto-scss-analysis-annotation { "origin": null }

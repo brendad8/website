@@ -8,6 +8,6 @@ For this project, we **developed an experimental design**, **collected data**, a
 
 While this analysis was done early in our respective college careers, and we have long since grown in our ability to write technical reports, it reinforces the important factors that go into designing an experiment and when statisticians can draw **cause and effect** conclusions. Looking back, running an experiment with friends also ended up being really fun.
 
-The data was analyzed using **jmp**.
+The data was analyzed using `JMP`.
 
 [Final Report](tea_time.pdf)

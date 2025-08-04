@@ -8,7 +8,7 @@ A large do-it-yourself (DIY) store in a densely populated suburb has collected d
 
 For this analysis I used a **Generalized-Linear Model** to model the number of customers who visited the store with an **offset** adjusting for the size of each neighborhood. The entire model fitting procedure is described in the Project Log with the final model described in the Final Report. Lastly, all code used for this analysis can be found in the Project Code link.
 
-This analysis was done using **R**.
+This analysis was done using `R`.
 
 [Final Report](glm.pdf)
 

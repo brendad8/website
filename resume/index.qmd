@@ -11,11 +11,11 @@ Statistics, Statistical Inference, Data Science, Supervised Learning, Unsupervis
 
 **Programming Languages / Tools:**
 
-R, Python, SQL, SAS, Java, Scala, Bash, Git, Excel
+`R`, `Python`, `SQL`, `SAS`, `Java`, `Scala`, `Bash`, `Git`, `Excel`
 
 **Libraries:**
 
-Quarto, tidyverse, tidymodels, ggplot, Jupyter, pandas, numpy, sklearn, plotly
+`Quarto`, `tidyverse`, `tidymodels`, `ggplot`, `Jupyter`, `pandas`, `numpy`, `sklearn`, `plotly`
 
 **Soft Skills:**
 

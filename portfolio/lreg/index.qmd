@@ -8,7 +8,7 @@ For this project, we used **linear regression** to model **housing prices in San
 
 This project includes **exploratory data analysis**, **transformations**, and **model building** techniques to find a model which best fits the data. Additionally, we performed **statistical inference** and **model validation** to answer key research questions and assess the overall model fit. This work was done in collaboration with Martin Hsu and Rachel Roggenkemper.
 
-This work was done using **R**.
+This work was done using `R`.
 
 
 [Final Report](lreg_report.pdf)
