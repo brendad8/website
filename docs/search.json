@@ -130,14 +130,14 @@
     "href": "resume/index.html",
     "title": "Resume",
     "section": "",
-    "text": "Technical Skills:\nStatistics, Statistical Inference, Data Science, Supervised Learning, Unsupervised Learning, Experimental Design, Data Visualization\nProgramming Languages / Tools:\nR, Python, SQL, SAS, Java, Scala, Bash, Git, Excel\nLibraries:\nQuarto, tidyverse, tidymodels, ggplot, Jupyter, pandas, numpy, sklearn, plotly\nSoft Skills:\nStrong Communicator, Data Storyteller, Quick Learner, Adaptable"
+    "text": "Technical Skills:\n\nStatistics: Statistical Inference, Experimental Design, Survival Analysis, Multivariate Statistics, Multi-Level & Mixed Modeling, Stochastic Processes, Generalized Linear Models, Data Visualization\n\n\nData Science: Supervised Learning, Unsupervised Learning, Train/Test Splits, K-fold Cross Validation, Sampling Techniques, Feature Engineering, Data Wrangling\n\nProgramming Languages / Tools:\nR, Python, SQL, SAS, Java, Scala, Bash, Git, Excel\nLibraries:\nQuarto, tidyverse, tidymodels, ggplot, Jupyter, pandas, numpy, sklearn, plotly\nSoft Skills:\nStrong Communicator, Data Storyteller, Quick Learner, Adaptable"
   },
   {
     "objectID": "resume/index.html#skills",
     "href": "resume/index.html#skills",
     "title": "Resume",
     "section": "",
-    "text": "Technical Skills:\nStatistics, Statistical Inference, Data Science, Supervised Learning, Unsupervised Learning, Experimental Design, Data Visualization\nProgramming Languages / Tools:\nR, Python, SQL, SAS, Java, Scala, Bash, Git, Excel\nLibraries:\nQuarto, tidyverse, tidymodels, ggplot, Jupyter, pandas, numpy, sklearn, plotly\nSoft Skills:\nStrong Communicator, Data Storyteller, Quick Learner, Adaptable"
+    "text": "Technical Skills:\n\nStatistics: Statistical Inference, Experimental Design, Survival Analysis, Multivariate Statistics, Multi-Level & Mixed Modeling, Stochastic Processes, Generalized Linear Models, Data Visualization\n\n\nData Science: Supervised Learning, Unsupervised Learning, Train/Test Splits, K-fold Cross Validation, Sampling Techniques, Feature Engineering, Data Wrangling\n\nProgramming Languages / Tools:\nR, Python, SQL, SAS, Java, Scala, Bash, Git, Excel\nLibraries:\nQuarto, tidyverse, tidymodels, ggplot, Jupyter, pandas, numpy, sklearn, plotly\nSoft Skills:\nStrong Communicator, Data Storyteller, Quick Learner, Adaptable"
   },
   {
     "objectID": "resume/index.html#experience",
@@ -172,7 +172,7 @@
     "href": "index.html",
     "title": "Brendan Callender",
     "section": "",
-    "text": "Data Scientist and Statistician\nM.S. Statistics"
+    "text": "Data Scientist and Statistician\nM.S. Statistics\n\n  \n\n\nHello and welcome to my website. My name is Brendan and I am a data scientist and statistician. I graduated with my masters in statistics from Cal Poly San Luis Obispo where I previously graduated with a bachelors in statistics along with a cross-disciplinary minor in data science."
   },
   {
     "objectID": "portfolio/loans/loans_code.html",

@@ -7,7 +7,10 @@ title: "Resume"
 
 **Technical Skills:**
 
-Statistics, Statistical Inference, Data Science, Supervised Learning, Unsupervised Learning, Experimental Design, Data Visualization
+> **Statistics**: Statistical Inference, Experimental Design, Survival Analysis, Multivariate Statistics, Multi-Level & Mixed Modeling, Stochastic Processes, Generalized Linear Models, Data Visualization
+
+
+> **Data Science**: Supervised Learning, Unsupervised Learning, Train/Test Splits, K-fold Cross Validation, Sampling Techniques, Feature Engineering, Data Wrangling
 
 **Programming Languages / Tools:**
 
