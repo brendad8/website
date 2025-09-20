@@ -22,7 +22,7 @@ Supervised Learning, Unsupervised Learning, Train/Test Splits, K-fold Cross Vali
 
 **Libraries:**
 
-`Quarto`, `tidyverse`, `tidymodels`, `ggplot`, `Jupyter`, `pandas`, `numpy`, `sklearn`, `plotly`
+`Quarto`, `tidyverse`, `tidymodels`, `ggplot`, `Jupyter`, `pandas`, `numpy`, `sklearn`, `plotly`, `polars`
 
 **Soft Skills:**
 
@@ -33,7 +33,16 @@ Strong Communicator, Data Storyteller, Quick Learner, Adaptable
 ## Experience
 
 
-### Inari Medical (Now Stryker)
+### SSR Engineering
+
+August 2025 - Current
+
+Data Scientist Consultant
+
+* Developed an algorithm by which radar input parameters can be tuned to select optimal values according to GPS, leading to increased radar accuracy and decreased setup cost.
+
+
+### Inari Medical
 
 June 2024 - June 2025
 
